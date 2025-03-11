@@ -123,14 +123,14 @@ const ContactForm = () => {
         render: "Your message has been sent successfully! You will receive Email confirmation shortly",
         type: "success",
         isLoading: false,
-        autoClose: 7000,
+        autoClose: 6500,
         closeOnClick: false,
         pauseOnHover: false,
         draggable: false,
         progress: undefined,
         closeButton: true,
       });
-    }, 2500);
+    }, 2000);
   };
 
   const handleSubmit = (e) => {
@@ -139,13 +139,9 @@ const ContactForm = () => {
     if (validate()) {
 
       const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+      const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-
-      console.log("Service ID:", serviceID);
-      console.log("Template ID:", templateID);
-      console.log("Public Key:", publicKey);
 
       const templateParams = {
         name: formData.name,
@@ -154,14 +150,15 @@ const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
         message: formData.message,
       };
 
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+      
       emailjs.send(serviceID, templateID, templateParams, publicKey)
         .then((response) => {
-          setFormData({
-            name: "",
-            phone: "",
-            email: "",
-            message: "",
-          });
           notify();
         })
         .catch((error) => {
