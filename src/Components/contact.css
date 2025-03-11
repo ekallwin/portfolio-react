@@ -1,0 +1,139 @@
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+#phone,
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+
+input[type="text"]:focus,
+#phone:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+textarea {
+  resize: none;
+  height: 150px;
+}
+
+.submit {
+  width: 50%;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 15px 20px 15px 20px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #D9006D, #CB0084, #9800E1);
+  display: block;
+  text-align: center;
+}
+
+.submit:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.9s;
+  background: linear-gradient(90deg, #9800E1, #CB0084, #D9006D);
+}
+
+@media (max-width: 600px) {
+  form {
+    padding: 25px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .contact {
+    width: 83%;
+    margin: auto;
+    padding: 20px;
+  }
+}
+
+.contact {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  margin-top: -50px;
+}
+
+
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container label {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 0 5px;
+  color: #555;
+  font-size: 14px;
+  pointer-events: none;
+  transition: 0.2s ease-in-out;
+}
+
+.input-container input[type="text"]:focus+label,
+.input-container input[type="text"]:not(:placeholder-shown)+label,
+.input-container #phone:focus+label,
+.input-container #phone:not(:placeholder-shown)+label,
+.input-container textarea:focus+label,
+.input-container textarea:not(:placeholder-shown)+label {
+  top: -1px;
+  left: 10px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+.input-container input:focus,
+.input-container textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.input-container #phone:focus+label,
+.input-container #phone:not(:placeholder-shown)+label {
+  left: -20px;
+}
