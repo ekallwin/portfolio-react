@@ -11,8 +11,8 @@
     "@testing-library/user-event": "^13.5.0",
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-notifications": "^1.7.4",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
@@ -42,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
   }
 }
