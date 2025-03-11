@@ -137,31 +137,37 @@ const ContactForm = () => {
     e.preventDefault();
 
     if (validate()) {
-      notify();
-    const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-    const templateParams = {
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email, 
-      message: formData.message,
-    };
+      const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-    emailjs.send(serviceID, templateID, templateParams, publicKey)
-    .then((response) => {
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        message: "",
-      });
-    })
-    .catch((error) => {
-      console.error("Email sending failed:", error);
-      toast.error("Failed to send message. Try again later.");
-    });
+
+      console.log("Service ID:", serviceID);
+      console.log("Template ID:", templateID);
+      console.log("Public Key:", publicKey);
+
+      const templateParams = {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+      };
+
+      emailjs.send(serviceID, templateID, templateParams, publicKey)
+        .then((response) => {
+          setFormData({
+            name: "",
+            phone: "",
+            email: "",
+            message: "",
+          });
+          notify();
+        })
+        .catch((error) => {
+          console.error("Email sending failed:", error);
+          toast.error("Failed to send message. Try again later.");
+        });
     }
   };
 
