@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NotificationManager } from "react-notifications";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,7 @@ const ContactForm = () => {
     message: "",
   });
 
+  const contactRef = useRef(null);
 
   const handlePhoneChange = (e) => {
     let value = e.target.value.replace(/\D/g, "");
@@ -156,7 +157,7 @@ const ContactForm = () => {
         email: "",
         message: "",
       });
-      
+
       emailjs.send(serviceID, templateID, templateParams, publicKey)
         .then((response) => {
           notify();
@@ -168,12 +169,35 @@ const ContactForm = () => {
     }
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
 
+    const contactElement = contactRef.current;
+
+    if (contactElement) {
+      observer.observe(contactElement);
+    }
+
+    return () => {
+      if (contactElement) {
+        observer.unobserve(contactElement);
+      }
+    };
+  }, []);
 
   return (
     <div className="contact" id="Contact">
       <h2 >Contact me</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="fade-in-contact" ref={contactRef}>
         <div className="input-container">
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} />
           <label>Name</label>

@@ -1,9 +1,11 @@
 import Allwin from "./Images/Allwin.jpg";
 import Resume from "./Resume/Resume.pdf"
 import { toast } from "react-toastify";
+import { useEffect, useRef } from "react";
 function About() {
 
   let hasDownloaded = false;
+  const aboutRef = useRef(null);
 
   const handleDownload = () => {
     if (!Resume) {
@@ -56,12 +58,37 @@ function About() {
     }, 6000);
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const aboutElement = aboutRef.current;
+
+    if (aboutElement) {
+      observer.observe(aboutElement);
+    }
+
+    return () => {
+      if (aboutElement) {
+        observer.unobserve(aboutElement);
+      }
+    };
+  }, []);
+
 
   return (
     <>
-      <div id="About" className="Abt">
+      <div id="About" className="abt" >
         <h2 style={{ textAlign: 'center' }}>About</h2>
-        <div className="About" id="Abt">
+        <div className="About fade-in" id="Abt" ref={aboutRef}>
           <figure>
             <img src={Allwin} alt="Allwin E K" onContextMenu={(e) => e.preventDefault()} draggable="false" style={{ userSelect: 'none' }} />
             <figcaption>I am <b>Allwin E K</b>, a passionate Web Developer. I have a solid foundation in <b>HTML, CSS and JavaScript</b>, and I love creating user-friendly and responsive web interfaces. I'm currently pursuing a <b>B.E</b> in <b>Computer Science and Engineering</b> at <b>Ponjesly College of Engineering, Nagercoil</b>.

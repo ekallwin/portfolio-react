@@ -176,7 +176,7 @@ li {
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 5px 0px 10px 20px;
+  padding: 5px 0px 5px 20px;
   color: black;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
   z-index: 1000;
@@ -225,6 +225,26 @@ li {
   position: relative;
   padding: 25px 45px 25px 0;
 }
+
+.fade-in {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 1s ease-in, transform 1s ease-in;
+}
+
+.fade-in-contact {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 1s ease-in, transform 1s ease-in;
+}
+
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
 
 @media (max-width: 768px) {
   .menu-icon {
@@ -361,9 +381,9 @@ div .Social {
   }
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 input[type=number] {
