@@ -237,7 +237,11 @@ li {
   transform: translateX(40px);
   transition: opacity 1s ease-in, transform 1s ease-in;
 }
-
+.btn-fade {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 1s ease-in, transform 1s ease-in;
+}
 .show {
   opacity: 1;
   transform: translateX(0);

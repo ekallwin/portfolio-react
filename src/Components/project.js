@@ -4,7 +4,8 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
 import Navbar from "./navbar";
-import Footer from "./footer"
+import Footer from "./footer";
+
 function projects() {
   const handleLinkClick = (event, url, message) => {
     event.preventDefault();
@@ -24,6 +25,7 @@ function projects() {
       <Navbar />
       <div className="Projects">
         <h2 style={{ textAlign: 'center' }} id="Projects">Projects</h2>
+
         <div className="Project">
           <img src={Dine} alt='Dine' className='Pro-img'></img>
           <div className="Project-info">
@@ -48,6 +50,7 @@ function projects() {
         </div>
 
       </div>
+
       <Footer />
     </>
   )

@@ -1,6 +1,8 @@
 import Typewriter from "typewriter-effect";
 import { toast } from "react-toastify";
+import { useEffect, useRef } from "react";
 function Header() {
+  const buttonRef = useRef(null);
   const LinkedIn = () => {
     toast.info('Redirecting to LinkedIn', {
       autoClose: 3000,
@@ -13,6 +15,31 @@ function Header() {
       window.open('https://www.linkedin.com/in/ekallwin/', '_blank');
     }, 2500);
   };
+
+  useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+  
+      const buttonElement = buttonRef.current;
+  
+      if (buttonElement) {
+        observer.observe(buttonElement);
+      }
+  
+      return () => {
+        if (buttonElement) {
+          observer.unobserve(buttonElement);
+        }
+      };
+    }, []);
 
   return (
     <>
@@ -32,7 +59,7 @@ function Header() {
           />
           </h2>
         </div>
-        <button className="gradient-button" onClick={LinkedIn}>Let's connect</button>
+        <button className="gradient-button btn-fade" onClick={LinkedIn} ref={buttonRef}>Let's connect</button>
       </div>
     </>
   )

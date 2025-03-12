@@ -5,7 +5,7 @@
   height: 300px;
   margin: 0 auto;
   overflow: hidden;
-  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   border-radius: 8px;
   margin-top: 150px;
   margin-bottom: 20px;
@@ -48,14 +48,14 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.235);
   border: none;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   z-index: 10;
   padding: 10px;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 button.prev {

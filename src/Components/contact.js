@@ -157,10 +157,10 @@ const ContactForm = () => {
         email: "",
         message: "",
       });
-
+      notify();
       emailjs.send(serviceID, templateID, templateParams, publicKey)
         .then((response) => {
-          notify();
+          
         })
         .catch((error) => {
           console.error("Email sending failed:", error);

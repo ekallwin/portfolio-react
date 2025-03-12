@@ -104,7 +104,8 @@ figure img {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   margin: 0 auto;
   padding: 30px;

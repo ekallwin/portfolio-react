@@ -88,7 +88,7 @@ function About() {
     <>
       <div id="About" className="abt" >
         <h2 style={{ textAlign: 'center' }}>About</h2>
-        <div className="About fade-in" id="Abt" ref={aboutRef}>
+        <div className="About card fade-in" id="Abt" ref={aboutRef}>
           <figure>
             <img src={Allwin} alt="Allwin E K" onContextMenu={(e) => e.preventDefault()} draggable="false" style={{ userSelect: 'none' }} />
             <figcaption>I am <b>Allwin E K</b>, a passionate Web Developer. I have a solid foundation in <b>HTML, CSS and JavaScript</b>, and I love creating user-friendly and responsive web interfaces. I'm currently pursuing a <b>B.E</b> in <b>Computer Science and Engineering</b> at <b>Ponjesly College of Engineering, Nagercoil</b>.
@@ -100,6 +100,7 @@ function About() {
         </div>
       </div>
 
+      
       {/* <div className="Edu">
         <h2 style={{ textAlign: 'center' }}>Education</h2>
         <div className="About Education" >
