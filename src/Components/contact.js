@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NotificationManager } from "react-notifications";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import "react-toastify/dist/ReactToastify.css";
 import "./contact.css"
 import Flag from "./Flag.png"
@@ -160,7 +162,7 @@ const ContactForm = () => {
       notify();
       emailjs.send(serviceID, templateID, templateParams, publicKey)
         .then((response) => {
-          
+
         })
         .catch((error) => {
           console.error("Email sending failed:", error);
@@ -225,7 +227,7 @@ const ContactForm = () => {
           <label>Your Message</label>
           <div className="char-count">{formData.message.length}/500</div>
         </div>
-        <button type="submit" className="submit" style={{ marginTop: "10px" }}>Send</button>
+        <button type="submit" className="submit" style={{ marginTop: "10px" }}>Send <FontAwesomeIcon icon={faPaperPlane} /></button>
       </form>
     </div>
   );
