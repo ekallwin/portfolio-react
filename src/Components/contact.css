@@ -156,10 +156,15 @@ textarea {
   h2 {
     font-size: 20px;
   }
+  .contact {
+    width: 83%;
+    margin: auto;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 400px) {
   .submit {
-    width: 100%;
+    width: 55%;
   }
 }
