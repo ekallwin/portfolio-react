@@ -5,30 +5,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import "react-toastify/dist/ReactToastify.css";
 import "./contact.css"
-import Flag from "./Flag.png"
 import emailjs from "@emailjs/browser";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     message: "",
+    countryCode: "in",
   });
+  const [phoneLength, setPhoneLength] = useState(10);
 
   const contactRef = useRef(null);
 
-  const handlePhoneChange = (e) => {
-    let value = e.target.value.replace(/\D/g, "");
+  const handlePhoneChange = (phone, country) => {
 
-    if (value.length > 5) {
-      value = value.slice(0, 5) + " " + value.slice(5);
-    }
-    if (value.length > 10) {
-      value = value.slice(0, 11);
+    let expectedLength = 10;
+    if (country && country.format) {
+      expectedLength = country.format.replace(/[^.#]/g, "").length;
     }
 
-    setFormData({ ...formData, phone: value });
-
+    setPhoneLength(expectedLength);
+    setFormData((prev) => ({ ...prev, phone: phone.startsWith("+") ? phone : "" + phone }));
   };
 
   const handleChange = (e) => {
@@ -74,17 +75,21 @@ const ContactForm = () => {
       isValid = false;
     }
 
-    const phoneRegex = /^(?!([0-9])\1{9})[6-9]\d{9}$/;
+    const cleanedPhone = formData.phone.replace(/\D/g, "");
+    console.log("Original Phone:", formData.phone);
+    console.log("Cleaned Phone for Validation:", cleanedPhone);
+    console.log("Required Length:", phoneLength);
 
-    if (!formData.phone.trim()) {
+    if (!cleanedPhone) {
       NotificationManager.error("Phone number is required", null, 4000);
       isValid = false;
-    } else if (!phoneRegex.test(formData.phone.trim().replace(/\s/g, ""))) {
-      NotificationManager.error("Invalid phone number", null, 4000);
+    } else if (cleanedPhone.length < phoneLength) {
+      NotificationManager.error("Invalid Phone Number", null, 4000);
+      isValid = false;
+    } else if (cleanedPhone.length !== phoneLength) {
+      NotificationManager.error("Invalid Phone Number", null, 4000);
       isValid = false;
     }
-
-
 
     if (!formData.email.trim()) {
       NotificationManager.error("Email address is required", null, 4000);
@@ -196,6 +201,26 @@ const ContactForm = () => {
     };
   }, []);
 
+  document.addEventListener("DOMContentLoaded", function () {
+    adjustDropdownWidth();
+
+    setTimeout(adjustDropdownWidth, 100);
+
+    window.addEventListener("resize", adjustDropdownWidth);
+  });
+
+  function adjustDropdownWidth() {
+    const phoneInput = document.querySelector(".phone-input");
+    const phoneDropdown = document.querySelector(".phone-dropdown");
+
+    if (phoneInput && phoneDropdown) {
+      const inputWidth = phoneInput.getBoundingClientRect().width;
+      phoneDropdown.style.width = `${inputWidth}px`;
+    }
+  }
+
+
+
   return (
     <div className="contact" id="Contact">
       <h2 >Contact me</h2>
@@ -204,20 +229,19 @@ const ContactForm = () => {
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} />
           <label>Name</label>
         </div>
-        <div className="input-container" >
-          <img src={Flag} alt="Indian Flag" style={{ position: 'absolute', top: '20px', left: '8px', transform: 'translateY(-50%)', borderRadius: '0', width: '28px', height: '20px', pointerEvents: 'none' }} />
-          <input style={{ paddingLeft: '43px', width: '100%', fontSize: '16px', height: '40px', boxSizing: 'border-box', }}
-            id="phone"
-            type="text"
-            inputMode="numeric"
-            name="phone"
+
+        <div className="input-container phone-input-wrapper">
+          <PhoneInput
+            country={"in"}
             value={formData.phone}
             onChange={handlePhoneChange}
-            placeholder=""
-            maxLength="11"
+            inputClass="phone-input"
+            containerClass="phone-input-container"
+            buttonClass="phone-dropdown-button"
+            dropdownClass="phone-dropdown"
           />
-          <label style={{ marginLeft: '30px' }}>Phone Number</label>
         </div>
+
         <div className="input-container" style={{ marginTop: "20px" }}>
           <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder=" " style={{ width: "100%" }} />
           <label>Email Address</label>
