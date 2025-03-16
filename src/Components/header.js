@@ -17,29 +17,33 @@ function Header() {
   };
 
   useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-  
-      const buttonElement = buttonRef.current;
-  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show"); 
+            entry.target.classList.remove("hide");
+          } else {
+            entry.target.classList.add("hide");
+            entry.target.classList.remove("show"); 
+          }
+        });
+      },
+      { threshold: 0.3 } 
+    );
+
+    const buttonElement = buttonRef.current; 
+
+    if (buttonElement) {
+      observer.observe(buttonElement);
+    }
+
+    return () => {
       if (buttonElement) {
-        observer.observe(buttonElement);
+        observer.unobserve(buttonElement);
       }
-  
-      return () => {
-        if (buttonElement) {
-          observer.unobserve(buttonElement);
-        }
-      };
-    }, []);
+    };
+  }, []);
 
   return (
     <>
