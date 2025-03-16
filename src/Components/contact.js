@@ -225,7 +225,7 @@ const ContactForm = () => {
 
   return (
     <div className="contact" id="Contact">
-      <h2 >Contact me</h2>
+      <h2>Contact me</h2>
       <form onSubmit={handleSubmit} className="fade-in-contact" ref={contactRef}>
         <div className="input-container">
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} />

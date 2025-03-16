@@ -237,7 +237,7 @@ li {
 
 .fade-in.hide {
   opacity: 0;
-  transform: translateX(40px); 
+  transform: translateX(-40px); 
 }
 
 .fade-in-contact {
@@ -257,7 +257,7 @@ li {
 
 .btn-fade {
   opacity: 0;
-  transform: translateX(50px);
+  transform: translateX(40px);
   transition: opacity 1s ease-in, transform 1s ease-in;
 }
 .btn-fade.show {
