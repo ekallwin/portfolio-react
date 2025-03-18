@@ -231,14 +231,12 @@ li {
   transform: translateX(-40px);
   transition: opacity 1s ease-in, transform 1s ease-in;
 }
+
 .fade-in.show {
   opacity: 1;
 }
 
-.fade-in.hide {
-  opacity: 0;
-  transform: translateX(-40px); 
-}
+
 
 .fade-in-contact {
   opacity: 0;
@@ -252,7 +250,7 @@ li {
 
 .fade-in-contact.hide {
   opacity: 0;
-  transform: translateX(40px); 
+  transform: translateX(40px);
 }
 
 .btn-fade {
@@ -260,14 +258,11 @@ li {
   transform: translateX(40px);
   transition: opacity 1s ease-in, transform 1s ease-in;
 }
+
 .btn-fade.show {
   opacity: 1;
 }
 
-.btn-fade.hide {
-  opacity: 0;
-  transform: translateX(40px); 
-}
 
 .show {
   opacity: 1;
@@ -349,11 +344,13 @@ footer h4 {
   justify-content: center;
   align-items: center;
 }
+
 .footer-copyright {
   text-align: center;
   font-size: 11px;
   margin-bottom: 20px;
 }
+
 a {
   color: white;
 }
@@ -363,6 +360,7 @@ footer h4 {
   margin-top: 15px;
   padding-bottom: 10px;
 }
+
 .footer-text {
   margin: 0 auto;
   text-align: center;
@@ -414,7 +412,7 @@ div .Social {
     color: white;
     padding: 1px;
   }
-  
+
 }
 
 

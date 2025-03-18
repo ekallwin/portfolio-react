@@ -21,18 +21,14 @@ function Header() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("show"); 
-            entry.target.classList.remove("hide");
-          } else {
-            entry.target.classList.add("hide");
-            entry.target.classList.remove("show"); 
+            entry.target.classList.add("show");
           }
         });
       },
-      { threshold: 0.3 } 
+      { threshold: 0.3 }
     );
 
-    const buttonElement = buttonRef.current; 
+    const buttonElement = buttonRef.current;
 
     if (buttonElement) {
       observer.observe(buttonElement);

@@ -63,18 +63,14 @@ function About() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("show"); 
-            entry.target.classList.remove("hide");
-          } else {
-            entry.target.classList.add("hide");
-            entry.target.classList.remove("show"); 
+            entry.target.classList.add("show");
           }
         });
       },
-      { threshold: 0.3 } 
+      { threshold: 0.3 }
     );
 
-    const aboutElement = aboutRef.current; 
+    const aboutElement = aboutRef.current;
 
     if (aboutElement) {
       observer.observe(aboutElement);
@@ -104,7 +100,7 @@ function About() {
         </div>
       </div>
 
-      
+
       {/* <div className="Edu">
         <h2 style={{ textAlign: 'center' }}>Education</h2>
         <div className="About Education" >

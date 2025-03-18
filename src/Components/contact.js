@@ -76,7 +76,7 @@ const ContactForm = () => {
     }
 
     const cleanedPhone = formData.phone.replace(/\D/g, "");
-    
+
     if (!cleanedPhone) {
       NotificationManager.error("Phone number is required", null, 4000);
       isValid = false;
@@ -178,18 +178,14 @@ const ContactForm = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("show"); 
-            entry.target.classList.remove("hide");
-          } else {
-            entry.target.classList.add("hide");
-            entry.target.classList.remove("show"); 
+            entry.target.classList.add("show");
           }
         });
       },
-      { threshold: 0.3 } 
+      { threshold: 0.3 }
     );
 
-    const contactElement = contactRef.current; 
+    const contactElement = contactRef.current;
 
     if (contactElement) {
       observer.observe(contactElement);
@@ -202,7 +198,7 @@ const ContactForm = () => {
     };
   }, []);
 
-  
+
   document.addEventListener("DOMContentLoaded", function () {
     adjustDropdownWidth();
 
