@@ -8,6 +8,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 export default function ChatBot() {
+    const chatbotRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
@@ -239,9 +240,24 @@ export default function ChatBot() {
 
     };
 
+    const closeMenu = () => {
+        setIsOpen(false);
+      };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
+                closeMenu();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [chatbotRef]);
 
     return (
-        <div className="chat-container">
+        <div className="chat-container" ref={chatbotRef}>
             <button onClick={toggleChat} className={isOpen ? "chat-close-icon dark-mode" : "chat-open-icon"}>
                 <FontAwesomeIcon icon={isOpen ? faTimes : faComment} size="xl" />
             </button>
