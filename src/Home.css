@@ -230,12 +230,12 @@ span {
 
   .About figcaption {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   figcaption {
-    text-align: left;
-    font-size: 16px;
+    /* text-align: left; */
+    font-size: 14px;
   }
 
   .About fieldset {
@@ -270,7 +270,6 @@ span {
 
 .char-count {
   font-size: 16px;
-  color: red;
   margin-top: -10px;
   text-align: left;
 }

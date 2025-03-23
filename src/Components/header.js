@@ -47,10 +47,10 @@ function Header() {
       <div className="item-name" >
         <h2 className="titlename" >Hi, I'm Allwin E K</h2>
         <div className="typing-effect" style={{ display: 'flex', flexDirection: 'column' }}>
-          <h2 className="typewritter" style={{ marginLeft: '25px' }}>I'm</h2>
+          {/* <h2 className="typewritter" style={{ marginLeft: '25px' }}>I'm</h2> */}
           <h2 className="typewritter"><Typewriter
             options={{
-              strings: ["Front-end Developer", "Designer", "Freelancer"],
+              strings: ["MERN stack Developer", "Designer", "Freelancer"],
               autoStart: true,
               loop: true,
               deleteSpeed: 50,

@@ -60,13 +60,16 @@
 
 /* Dark Mode Styles */
 .dark-mode {
-  background-color: #3d3737;
+  background-color: #252020;
   color: #efefef;
 }
 
+.dark-mode .chat-close-icon {
+  color: white;
+}
 
 .dark-mode .navbar {
-  background-color: #141414;
+  background-color: #000000;
   color: #efefef;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
 }

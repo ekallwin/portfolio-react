@@ -1,0 +1,327 @@
+import { useState, useEffect, useRef, useCallback } from "react";
+import profileData from "./profileData.json";
+import "./ChatBot.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment, faTimes, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import emailjs from "@emailjs/browser";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
+export default function ChatBot() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState("");
+    const [isTyping, setIsTyping] = useState(true);
+    const [conversationStep, setConversationStep] = useState(0);
+    const [formattedName, setFormattedName] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
+    const [phoneLength, setPhoneLength] = useState(10);
+
+    const handlePhoneChange = (phone, country) => {
+        let expectedLength = 10;
+        if (country && country.format) {
+            expectedLength = country.format.replace(/[^.#]/g, "").length;
+        }
+
+        setPhoneLength(expectedLength);
+        setInput(phone)
+        setFormData((prev) => ({
+            ...prev,
+            phone: phone.startsWith("+") ? phone : "+" + phone
+        }));
+    };
+
+
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMessages([{ sender: "bot", text: "Hello! How can I assist you today?", showButtons: true }]);
+            setIsTyping(false);
+        }, 3500);
+    }, []);
+
+    const restartChat = () => {
+        setMessages([]);
+        setIsTyping(true);
+        setConversationStep(0);
+        setTimeout(() => {
+            setMessages([{ sender: "bot", text: "Hello! How can I assist you today?", showButtons: true }]);
+            setIsTyping(false);
+        }, 2000);
+    };
+
+
+    const sendContactForm = useCallback(() => {
+        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+        const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+        const templateParams = {
+            name: formattedName,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+        };
+
+        emailjs.send(serviceID, templateID, templateParams, publicKey)
+            .then(() => {
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        sender: "bot",
+                        text: `${formattedName}, your message has been sent successfully! You will receive an email confirmation shortly!`
+                    }
+                ]);
+            })
+
+
+            .catch(() => {
+                setMessages((prev) => [...prev, { sender: "bot", text: "There was an issue sending your message. Try again later." }]);
+            });
+    }, [formattedName, formData]);
+
+    useEffect(() => {
+        if (conversationStep === 5 && formData.message) {
+            sendContactForm();
+        }
+    }, [conversationStep, formData.message, sendContactForm]);
+
+    const toggleChat = () => setIsOpen(!isOpen);
+
+    const getBotResponse = (query) => {
+        const lowerCaseQuery = query.toLowerCase();
+        if (!/^[a-zA-Z0-9\s.,!?'\-+*/\\^%$#@&=<>{}[\]()_|~`]+$/.test(query)) {
+            return "Currently, I only know English.";
+        }
+
+        if (lowerCaseQuery === "hi" || lowerCaseQuery === "hello") {
+            return "Hello! How can I assist you today?";
+        }
+        if (lowerCaseQuery === "ok" || lowerCaseQuery === "good" || lowerCaseQuery === "done" || lowerCaseQuery === "kk" || lowerCaseQuery === "nice" || lowerCaseQuery === "nice") {
+            return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
+        }
+        if (conversationStep === 0) {
+            if (lowerCaseQuery.includes("name")) return `My creator's name is ${profileData.name}.`;
+            if (lowerCaseQuery.includes("skills")) return `Here are some skills: ${profileData.skills.join(", ")}.`;
+            if (lowerCaseQuery.includes("college")) return `Currently studying at ${profileData.college}.`;
+            if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n\n${profileData.projects.join(", \n\n")}.`;
+            if (lowerCaseQuery.includes("achievements")) return `Here are some achievements: \n\n${profileData.achievements.join("\n\n")}.`;
+            if (lowerCaseQuery.includes("about")) return `${profileData.about}`;
+            if (lowerCaseQuery.includes("social media")) {
+                return {
+                    text: "Here are the social media links:",
+                    showSocialButtons: true,
+                };
+            }
+
+            if (lowerCaseQuery.includes("contact")) {
+                setConversationStep(1);
+                return "Sure! Please provide your Name.";
+            }
+
+            return "I'm not sure, but I'm learning!";
+        }
+
+        if (conversationStep === 1) {
+            if (!/^[a-zA-Z\s]{3,}$/.test(query)) {
+                return "Invalid name. It should be at least 3 characters long and contain only letters.";
+            }
+
+            const formatted = query
+                .split(" ")
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(" ");
+
+            setFormattedName(formatted);
+            setFormData({ ...formData, name: formatted });
+            setConversationStep(2);
+            return `Got it, ${formatted}! Now, please enter your Email.`;
+        }
+
+
+        if (conversationStep === 2) {
+            const lowerCaseEmail = query.toLowerCase();
+            if (
+                !lowerCaseEmail.includes("@") ||
+                !lowerCaseEmail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) ||
+                !lowerCaseEmail.match(/\.(com|in|org|edu\.in|net|co\.in)$/)
+            ) {
+                return "Invalid email address. Please enter a valid email (e.g., example@domain.com).";
+            }
+            setFormData({ ...formData, email: lowerCaseEmail });
+            setConversationStep(3);
+            return `Thanks, ${formattedName}! Now, please enter your phone number. I will use this to contact you, so make sure to enter the Phone correct number.`;
+        }
+
+        if (conversationStep === 3) {
+            const cleanedPhone = query.replace(/\D/g, "");
+
+
+            if (cleanedPhone.length !== phoneLength) {
+                return `Invalid phone number length. Expected ${phoneLength} digits.`;
+            }
+
+            setFormData({ ...formData, phone: query });
+            setConversationStep(4);
+            return `Almost done, ${formattedName}! Please enter the message you would like to send to Allwin.`;
+        }
+
+
+
+        if (conversationStep === 4) {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                message: query,
+            }));
+            setConversationStep(5);
+            return "Sending your message...";
+        }
+
+        return "I'm not sure, but I'm learning!";
+    };
+
+    const sendMessage = () => {
+        if (input.trim() === "") return;
+        const userMessage = { sender: "user", text: input };
+        setMessages([...messages, userMessage]);
+        setInput("");
+        setIsTyping(true);
+
+        setTimeout(() => {
+            setIsTyping(false);
+            const botResponse = getBotResponse(input);
+
+            if (typeof botResponse === "string") {
+                setMessages((prev) => [...prev, { sender: "bot", text: botResponse }]);
+            } else {
+                setMessages((prev) => [...prev, { sender: "bot", text: botResponse.text, showSocialButtons: botResponse.showSocialButtons }]);
+            }
+
+        }, 1500);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            sendMessage(input);
+        }
+    };
+
+    const handleButtonClick = (query) => {
+        const userMessage = { sender: "user", text: query };
+        setMessages((prev) => [...prev, userMessage]);
+        setIsTyping(true);
+
+        setTimeout(() => {
+            setIsTyping(false);
+            const botResponse = getBotResponse(query);
+
+            if (typeof botResponse === "string") {
+                setMessages((prev) => [...prev, { sender: "bot", text: botResponse }]);
+            } else {
+                setMessages((prev) => [...prev, {
+                    sender: "bot",
+                    text: botResponse.text,
+                    showSocialButtons: botResponse.showSocialButtons || false
+                }]);
+            }
+
+        }, 1500);
+
+    };
+
+
+    return (
+        <div className="chat-container">
+            <button onClick={toggleChat} className={isOpen ? "chat-close-icon dark-mode" : "chat-open-icon"}>
+                <FontAwesomeIcon icon={isOpen ? faTimes : faComment} size="xl" />
+            </button>
+
+            {isOpen && (
+                <div className="chat-box">
+                    <div className="chat-messages">
+                        {messages.map((msg, index) => (
+                            <div key={index} className={`chat-message ${msg.sender === "user" ? "user-message" : "bot-message"}`}>
+                                {msg.text}
+                                {msg.showButtons && conversationStep === 0 && (
+                                    <div className="predefined-buttons">
+                                        <button onClick={() => handleButtonClick("About")}>About</button>
+                                        <button onClick={() => handleButtonClick("Achievements")}>Achievements</button>
+                                        <button onClick={() => handleButtonClick("Contact Me")}>Contact Me</button>
+                                        <button onClick={() => handleButtonClick("Projects")}>Projects</button>
+                                        <button onClick={() => handleButtonClick("social media")}>social medias</button>
+                                    </div>
+                                )}
+                                {msg.showSocialButtons && (
+                                    <div className="predefined-buttons">
+                                        <button onClick={() => window.open("https://www.facebook.com", "_blank")}>Facebook</button>
+                                        <button onClick={() => window.open("https://github.com", "_blank")}>GitHub</button>
+                                        <button onClick={() => window.open("https://www.instagram.com", "_blank")}>Instagram</button>
+                                        <button onClick={() => window.open("https://www.linkedin.com", "_blank")}>LinkedIn</button>
+                                        <button onClick={() => window.open("https://www.threads.net", "_blank")}>Threads</button>
+                                        <button onClick={() => window.open("https://twitter.com", "_blank")}>X (Twitter)</button>
+                                    </div>
+                                )}
+
+                                {msg.sender === "bot" &&
+                                    msg.text !== "Hello! How can I assist you today?" && msg.text !== "Sending your message..." &&
+                                    (
+                                        <div className="restart-chat">
+                                            <button onClick={restartChat}>Restart Chat</button>
+                                        </div>
+                                    )}
+                            </div>
+                        ))}
+                        {isTyping && (
+                            <div className="chat-message bot-message typing-indicator">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        )}
+                        <div ref={messagesEndRef} />
+                    </div>
+                    <div className="chat-input">
+                        {conversationStep === 2 ? (
+                            <input
+                                value={input}
+                                onChange={(e) => setInput(e.target.value.toLowerCase())}
+                                onKeyDown={handleKeyDown}
+                                placeholder="Enter your email"
+                                className="input-field"
+                            />
+                        ) : conversationStep === 3 ? (
+                            <PhoneInput
+                                country={"in"}
+                                value={formData.phone}
+                                onChange={handlePhoneChange}
+                                inputClass="phone-input"
+                                containerClass="phone-input-container"
+                                buttonClass="phone-dropdown-button"
+                                dropdownClass="phone-dropdown"
+                            />
+                        ) : (
+                            <input
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                placeholder="Type a message..."
+                                className="input-field"
+                            />
+                        )}
+                        <button onClick={sendMessage} className="send-button"><FontAwesomeIcon icon={faPaperPlane} /></button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}

@@ -91,7 +91,7 @@ function About() {
         <div className="About card fade-in" id="Abt" ref={aboutRef}>
           <figure>
             <img src={Allwin} alt="Allwin E K" onContextMenu={(e) => e.preventDefault()} draggable="false" style={{ userSelect: 'none' }} />
-            <figcaption>I am <b>Allwin E K</b>, a passionate Web Developer. I have a solid foundation in <b>HTML, CSS and JavaScript</b>, and I love creating user-friendly and responsive web interfaces. I'm currently pursuing a <b>B.E</b> in <b>Computer Science and Engineering</b> at <b>Ponjesly College of Engineering, Nagercoil</b>.
+            <figcaption>I am <b>Allwin E K</b>, a passionate Web Developer. I have a solid foundation in Front End technologies like <b>HTML, CSS, JavaScript and React.js</b>, and I love creating user-friendly and responsive web interfaces. I'm currently pursuing a <b>B.E</b> in <b>Computer Science and Engineering</b> at <b>Ponjesly College of Engineering, Nagercoil</b>.
               <br /><br />
               I strongly believe in continuous learning and improving myself, so I try my best to learn in any situation possible, unfavorable or not.
             </figcaption>
