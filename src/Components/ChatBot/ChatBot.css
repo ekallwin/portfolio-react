@@ -36,8 +36,14 @@
 
 @media (max-width: 768px) {
     .chat-container {
+        position: fixed;
+        margin-bottom: 110px;
+        bottom: 30px !important;
         right: 10px !important;
-        bottom: 100px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        z-index: 1000;
     }
 
     .chat-messages {
