@@ -37,7 +37,7 @@
 @media (max-width: 768px) {
     .chat-container {
         position: fixed;
-        margin-bottom: 110px;
+        margin-bottom: 90px;
         bottom: 30px !important;
         right: 10px !important;
         display: flex;

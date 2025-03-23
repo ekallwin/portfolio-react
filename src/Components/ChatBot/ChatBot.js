@@ -258,7 +258,7 @@ export default function ChatBot() {
                                         <button onClick={() => handleButtonClick("Achievements")}>Achievements</button>
                                         <button onClick={() => handleButtonClick("Contact Me")}>Contact Me</button>
                                         <button onClick={() => handleButtonClick("Projects")}>Projects</button>
-                                        <button onClick={() => handleButtonClick("social media")}>social medias</button>
+                                        <button onClick={() => handleButtonClick("social media")}>Social medias</button>
                                     </div>
                                 )}
                                 {msg.showSocialButtons && (
