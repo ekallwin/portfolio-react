@@ -314,12 +314,12 @@ export default function ChatBot() {
                                 )}
                                 {msg.showSocialButtons && (
                                     <div className="predefined-buttons">
-                                        <button onClick={() => window.open("https://www.facebook.com", "_blank")}>Facebook</button>
-                                        <button onClick={() => window.open("https://github.com", "_blank")}>GitHub</button>
-                                        <button onClick={() => window.open("https://www.instagram.com", "_blank")}>Instagram</button>
-                                        <button onClick={() => window.open("https://www.linkedin.com", "_blank")}>LinkedIn</button>
-                                        <button onClick={() => window.open("https://www.threads.net", "_blank")}>Threads</button>
-                                        <button onClick={() => window.open("https://twitter.com", "_blank")}>X (Twitter)</button>
+                                        <button onClick={() => window.open("https://www.facebook.com/ekallwin", "_blank")}>Facebook</button>
+                                        <button onClick={() => window.open("https://github.com/ekallwin", "_blank")}>GitHub</button>
+                                        <button onClick={() => window.open("https://www.instagram.com/ekallwin", "_blank")}>Instagram</button>
+                                        <button onClick={() => window.open("https://www.linkedin.com/in/ekallwin", "_blank")}>LinkedIn</button>
+                                        <button onClick={() => window.open("https://www.threads.net/@ekallwin", "_blank")}>Threads</button>
+                                        <button onClick={() => window.open("https://x.com/ekallwin", "_blank")}>X (Twitter)</button>
                                     </div>
                                 )}
 
