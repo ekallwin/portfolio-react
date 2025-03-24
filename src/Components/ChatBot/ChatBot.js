@@ -6,6 +6,7 @@ import { faComment, faTimes, faPaperPlane } from "@fortawesome/free-solid-svg-ic
 import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { Filter } from "bad-words";
 
 export default function ChatBot() {
     const chatbotRef = useRef(null);
@@ -46,7 +47,7 @@ export default function ChatBot() {
 
     useEffect(() => {
         setTimeout(() => {
-            setMessages([{ sender: "bot", text: "Hello! How can I assist you today?", showButtons: true }]);
+            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I’m always happy to help!", showButtons: true }]);
             setIsTyping(false);
         }, 3500);
     }, []);
@@ -56,7 +57,7 @@ export default function ChatBot() {
         setIsTyping(true);
         setConversationStep(0);
         setTimeout(() => {
-            setMessages([{ sender: "bot", text: "Hello! How can I assist you today?", showButtons: true }]);
+            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I’m always happy to help!", showButtons: true }]);
             setIsTyping(false);
         }, 2000);
     };
@@ -98,18 +99,52 @@ export default function ChatBot() {
     }, [conversationStep, formData.message, sendContactForm]);
 
     const toggleChat = () => setIsOpen(!isOpen);
+    const filter = new Filter();
+    const positiveWords = [
+        "good", "great", "awesome", "excellent", "fantastic", "amazing", "nice",
+        "wonderful", "superb", "outstanding", "love", "cool", "perfect", "best",
+        "impressive", "brilliant", "spectacular", "super", "happy", "smile",
+        "joy", "positive", "optimistic", "charming", "enthusiastic", "delightful",
+        "radiant", "cheerful", "kind", "supportive", "grateful", "thankful",
+        "beautiful", "sweet", "peaceful", "successful", "genius", "incredible",
+        "fun", "friendly", "motivating", "uplifting", "encouraging", "energetic",
+        "lively", "strong", "smart", "intelligent", "talented", "lovely",
+        "passionate", "respectful", "honest", "loyal", "inspiring", "warm-hearted",
+        "blessed", "fortunate", "appreciated", "celebrated", "victorious"
+    ];
+
+    const socialMediaWords = [
+        "facebook", "fb", "instagram", "insta", "twitter", "x", "linkedin",
+        "threads", "social media", "github", "git", "snapchat", "sc", "tiktok",
+        "reddit", "discord", "telegram", "whatsapp", "yt", "youtube", "pinterest",
+        "social medias"
+    ];
+
+    const contactWords = [
+        "contact", "message", "reach", "call", "email", "phone", "support",
+        "help", "assistance", "enquiry", "inquiry", "chat", "talk", "speak",
+        "customer service", "helpdesk", "request", "info", "details", "query"
+    ];
 
     const getBotResponse = (query) => {
+
         const lowerCaseQuery = query.toLowerCase();
+        if (filter.isProfane(lowerCaseQuery)) {
+            return "This message may contain language that could be considered inappropriate or sensitive. I can't help you with this.";
+        }
+
         if (!/^[a-zA-Z0-9\s.,!?'\-+*/\\^%$#@&=<>{}[\]()_|~`]+$/.test(query)) {
             return "Currently, I only know English.";
         }
 
         if (lowerCaseQuery === "hi" || lowerCaseQuery === "hello") {
-            return "Hello! How can I assist you today?";
+            return "Hello! How can I assist you today? Just ask me I’m always happy to help!";
         }
-        if (lowerCaseQuery === "ok" || lowerCaseQuery === "good" || lowerCaseQuery === "done" || lowerCaseQuery === "kk" || lowerCaseQuery === "nice" || lowerCaseQuery === "nice") {
+        if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
             return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
+        }
+        if (lowerCaseQuery === "not good" || lowerCaseQuery === "bad" || lowerCaseQuery === "worst" || lowerCaseQuery === "idiot" || lowerCaseQuery === "non sense" || lowerCaseQuery === "non-sense" || lowerCaseQuery === "stupid") {
+            return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
         }
         if (conversationStep === 0) {
             if (lowerCaseQuery.includes("name")) return `My creator's name is ${profileData.name}.`;
@@ -118,14 +153,14 @@ export default function ChatBot() {
             if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n\n${profileData.projects.join(", \n\n")}.`;
             if (lowerCaseQuery.includes("achievements")) return `Here are some achievements: \n\n${profileData.achievements.join("\n\n")}.`;
             if (lowerCaseQuery.includes("about")) return `${profileData.about}`;
-            if (lowerCaseQuery.includes("social media")) {
+            if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
                 return {
                     text: "Here are the social media links:",
                     showSocialButtons: true,
                 };
             }
 
-            if (lowerCaseQuery.includes("contact")) {
+            if (contactWords.some(word => lowerCaseQuery.includes(word))) {
                 setConversationStep(1);
                 return "Sure! Please provide your Name.";
             }
@@ -242,7 +277,7 @@ export default function ChatBot() {
 
     const closeMenu = () => {
         setIsOpen(false);
-      };
+    };
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
@@ -274,7 +309,7 @@ export default function ChatBot() {
                                         <button onClick={() => handleButtonClick("Achievements")}>Achievements</button>
                                         <button onClick={() => handleButtonClick("Contact Me")}>Contact Me</button>
                                         <button onClick={() => handleButtonClick("Projects")}>Projects</button>
-                                        <button onClick={() => handleButtonClick("social media")}>Social medias</button>
+                                        {/* <button onClick={() => handleButtonClick("social media")}>Social medias</button> */}
                                     </div>
                                 )}
                                 {msg.showSocialButtons && (
@@ -289,7 +324,7 @@ export default function ChatBot() {
                                 )}
 
                                 {msg.sender === "bot" &&
-                                    msg.text !== "Hello! How can I assist you today?" && msg.text !== "Sending your message..." &&
+                                    msg.text !== "Hello! How can I assist you today? Just ask me I’m always happy to help!" && msg.text !== "Sending your message..." &&
                                     (
                                         <div className="restart-chat">
                                             <button onClick={restartChat}>Restart Chat</button>

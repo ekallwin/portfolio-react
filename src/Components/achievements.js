@@ -5,6 +5,7 @@ import Amrita from "./Carousel/Amrita College Symposium.jpg";
 import AVCE from "./Carousel/AVCE College Symposium.jpg";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import ChatBot from "./ChatBot/ChatBot"
 
 const Carousel = () => {
   const slides = [
@@ -81,7 +82,7 @@ const Carousel = () => {
       <div className="carousel-caption">
         <p>{slides[currentIndex].caption}</p>
       </div>
-
+      <ChatBot />
       <Footer />
     </>
   );

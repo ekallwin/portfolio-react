@@ -5,6 +5,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import ChatBot from "./ChatBot/ChatBot"
 
 function projects() {
   const handleLinkClick = (event, url, message) => {
@@ -50,7 +51,7 @@ function projects() {
         </div>
 
       </div>
-
+      <ChatBot />
       <Footer />
     </>
   )
