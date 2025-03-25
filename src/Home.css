@@ -178,7 +178,9 @@ span {
   .Project-info {
     margin: auto;
   }
-
+.typing-effect {
+  margin-top: 50px;
+}
   .Project {
     max-width: 600px;
     max-height: 500px;
@@ -203,7 +205,7 @@ span {
     margin: 0 auto;
     display: block;
     text-decoration: none;
-    margin-top: 30px;
+    margin-top: 80px;
   }
 
   a {
@@ -212,7 +214,8 @@ span {
 
   .item-name,
   .titlename {
-    font-size: 35px;
+    font-size: 40px;
+    margin-top: 120px;
   }
 
   #About {
