@@ -47,7 +47,7 @@ export default function ChatBot() {
 
     useEffect(() => {
         setTimeout(() => {
-            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I’m always happy to help!", showButtons: true }]);
+            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I'm always happy to help!", showButtons: true }]);
             setIsTyping(false);
         }, 3500);
     }, []);
@@ -57,7 +57,7 @@ export default function ChatBot() {
         setIsTyping(true);
         setConversationStep(0);
         setTimeout(() => {
-            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I’m always happy to help!", showButtons: true }]);
+            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I'm always happy to help!", showButtons: true }]);
             setIsTyping(false);
         }, 2000);
     };
@@ -88,7 +88,7 @@ export default function ChatBot() {
 
 
             .catch(() => {
-                setMessages((prev) => [...prev, { sender: "bot", text: "There was an issue sending your message. Try again later." }]);
+                setMessages((prev) => [...prev, { sender: "bot", text: "There was an issue sending your message. Try again later" }]);
             });
     }, [formattedName, formData]);
 
@@ -110,14 +110,29 @@ export default function ChatBot() {
         "fun", "friendly", "motivating", "uplifting", "encouraging", "energetic",
         "lively", "strong", "smart", "intelligent", "talented", "lovely",
         "passionate", "respectful", "honest", "loyal", "inspiring", "warm-hearted",
-        "blessed", "fortunate", "appreciated", "celebrated", "victorious"
+        "blessed", "fortunate", "appreciated", "celebrated", "victorious", "ok", "kk", "done"
+    ];
+
+    const negativeWords = [
+        "bad", "worst", "awful", "terrible", "horrible", "poor", "disgusting",
+        "hate", "upset", "sad", "angry", "frustrated", "annoying", "disappointing",
+        "boring", "dumb", "stupid", "nonsense", "idiot", "miserable", "pathetic",
+        "foolish", "dissatisfied", "ugly", "ridiculous", "offensive", "painful",
+        "horrendous", "crap", "waste", "hopeless", "useless", "failure", "hurtful",
+        "regret", "sick", "tired", "ashamed", "gloomy", "depressing", "depressed",
+        "pointless", "horrid", "hateful", "shameful", "abysmal", "appalling",
+        "inferior", "insulting", "loathsome", "lousy", "mediocre", "miserable",
+        "offensive", "pathetic", "repulsive", "scornful", "troublesome", 
+        "vile", "wicked", "wretched", "nasty", "heartbreaking", "despair",
+        "incompetent", "regretful", "unhappy", "undesirable", "unfair",
+        "unforgivable", "unpleasant", "unworthy", "worthless", "devastating"
     ];
 
     const socialMediaWords = [
         "facebook", "fb", "instagram", "insta", "twitter", "x", "linkedin",
         "threads", "social media", "github", "git", "snapchat", "sc", "tiktok",
         "reddit", "discord", "telegram", "whatsapp", "yt", "youtube", "pinterest",
-        "social medias"
+        "social medias" , "social"
     ];
 
     const contactWords = [
@@ -130,28 +145,28 @@ export default function ChatBot() {
 
         const lowerCaseQuery = query.toLowerCase();
         if (filter.isProfane(lowerCaseQuery)) {
-            return "This message may contain language that could be considered inappropriate or sensitive. I can't help you with this.";
+            return "This message may contain language that could be considered inappropriate or sensitive. I can't help you with this";
         }
 
         if (!/^[a-zA-Z0-9\s.,!?'\-+*/\\^%$#@&=<>{}[\]()_|~`]+$/.test(query)) {
-            return "Currently, I only know English.";
+            return "Currently, I only know English";
         }
 
         if (lowerCaseQuery === "hi" || lowerCaseQuery === "hello") {
-            return "Hello! How can I assist you today? Just ask me I’m always happy to help!";
+            return "Hello! How can I assist you today? Just ask me I'm always happy to help!";
         }
         if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
             return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
         }
-        if (lowerCaseQuery === "not good" || lowerCaseQuery === "bad" || lowerCaseQuery === "worst" || lowerCaseQuery === "idiot" || lowerCaseQuery === "non sense" || lowerCaseQuery === "non-sense" || lowerCaseQuery === "stupid") {
+        if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
             return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
         }
         if (conversationStep === 0) {
-            if (lowerCaseQuery.includes("name")) return `My creator's name is ${profileData.name}.`;
-            if (lowerCaseQuery.includes("skills")) return `Here are some skills: ${profileData.skills.join(", ")}.`;
-            if (lowerCaseQuery.includes("college")) return `Currently studying at ${profileData.college}.`;
-            if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n\n${profileData.projects.join(", \n\n")}.`;
-            if (lowerCaseQuery.includes("achievements")) return `Here are some achievements: \n\n${profileData.achievements.join("\n\n")}.`;
+            if (lowerCaseQuery.includes("name")) return `My creator's name is ${profileData.name}`;
+            if (lowerCaseQuery.includes("skills")) return `Here are some skills: ${profileData.skills.join(", ")}`;
+            if (lowerCaseQuery.includes("college")) return `Currently studying at ${profileData.college}`;
+            if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n\n${profileData.projects.join(", \n\n")}`;
+            if (lowerCaseQuery.includes("achievements")) return `Here are some achievements: \n\n${profileData.achievements.join("\n\n")}`;
             if (lowerCaseQuery.includes("about")) return `${profileData.about}`;
             if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
                 return {
@@ -162,7 +177,7 @@ export default function ChatBot() {
 
             if (contactWords.some(word => lowerCaseQuery.includes(word))) {
                 setConversationStep(1);
-                return "Sure! Please provide your Name.";
+                return "Sure! Please provide your Name";
             }
 
             return "I'm not sure, but I'm learning!";
@@ -170,7 +185,7 @@ export default function ChatBot() {
 
         if (conversationStep === 1) {
             if (!/^[a-zA-Z\s]{3,}$/.test(query)) {
-                return "Invalid name. It should be at least 3 characters long and contain only letters.";
+                return "Invalid name. It should be at least 3 characters long and contain only letters";
             }
 
             const formatted = query
@@ -181,7 +196,7 @@ export default function ChatBot() {
             setFormattedName(formatted);
             setFormData({ ...formData, name: formatted });
             setConversationStep(2);
-            return `Got it, ${formatted}! Now, please enter your Email.`;
+            return `Got it, ${formatted}! Now, please enter your Email address to contact you`;
         }
 
 
@@ -192,11 +207,11 @@ export default function ChatBot() {
                 !lowerCaseEmail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) ||
                 !lowerCaseEmail.match(/\.(com|in|org|edu\.in|net|co\.in)$/)
             ) {
-                return "Invalid email address. Please enter a valid email (e.g., example@domain.com).";
+                return "Invalid email address. Please enter a valid email (e.g., example@domain.com)";
             }
             setFormData({ ...formData, email: lowerCaseEmail });
             setConversationStep(3);
-            return `Thanks, ${formattedName}! Now, please enter your phone number. I will use this to contact you, so make sure to enter the Phone correct number.`;
+            return `Thanks, ${formattedName}! Now, please enter your phone number. I will use this to contact you, so make sure to enter the Phone correct number`;
         }
 
         if (conversationStep === 3) {
@@ -204,12 +219,12 @@ export default function ChatBot() {
 
 
             if (cleanedPhone.length !== phoneLength) {
-                return `Invalid phone number length. Expected ${phoneLength} digits.`;
+                return `Invalid phone number length. Expected ${phoneLength} digits`;
             }
 
             setFormData({ ...formData, phone: query });
             setConversationStep(4);
-            return `Almost done, ${formattedName}! Please enter the message you would like to send to Allwin.`;
+            return `Almost done, ${formattedName}! Please enter the message you would like to send to Allwin`;
         }
 
 
@@ -324,7 +339,7 @@ export default function ChatBot() {
                                 )}
 
                                 {msg.sender === "bot" &&
-                                    msg.text !== "Hello! How can I assist you today? Just ask me I’m always happy to help!" && msg.text !== "Sending your message..." &&
+                                    msg.text !== "Hello! How can I assist you today? Just ask me I'm always happy to help!" && msg.text !== "Sending your message..." &&
                                     (
                                         <div className="restart-chat">
                                             <button onClick={restartChat}>Restart Chat</button>
