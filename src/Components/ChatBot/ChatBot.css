@@ -142,7 +142,7 @@
 
 .input-field {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     outline: none;
@@ -158,7 +158,7 @@
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 10px 12px;
     margin-left: 5px;
     border-radius: 4px;
     cursor: pointer;

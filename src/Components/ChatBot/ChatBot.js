@@ -125,7 +125,7 @@ export default function ChatBot() {
         "offensive", "pathetic", "repulsive", "scornful", "troublesome", 
         "vile", "wicked", "wretched", "nasty", "heartbreaking", "despair",
         "incompetent", "regretful", "unhappy", "undesirable", "unfair",
-        "unforgivable", "unpleasant", "unworthy", "worthless", "devastating"
+        "unforgivable", "unpleasant", "unworthy", "worthless", "nothing", "devastating"
     ];
 
     const socialMediaWords = [
@@ -141,6 +141,10 @@ export default function ChatBot() {
         "customer service", "helpdesk", "request", "info", "details", "query"
     ];
 
+    const greetings = [
+        "hi", "hello", "hey", "hii", "allwin", "greetings"
+    ];
+
     const getBotResponse = (query) => {
 
         const lowerCaseQuery = query.toLowerCase();
@@ -152,8 +156,8 @@ export default function ChatBot() {
             return "Currently, I only know English";
         }
 
-        if (lowerCaseQuery === "hi" || lowerCaseQuery === "hello") {
-            return "Hello! How can I assist you today? Just ask me I'm always happy to help!";
+        if (greetings.some(word => lowerCaseQuery.includes(word))) {
+            return "Hello! How can I assist you today? Just ask me, I'm always happy to help!";
         }
         if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
             return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
@@ -320,9 +324,9 @@ export default function ChatBot() {
                                 {msg.text}
                                 {msg.showButtons && conversationStep === 0 && (
                                     <div className="predefined-buttons">
-                                        <button onClick={() => handleButtonClick("About")}>About</button>
+                                        <button onClick={() => handleButtonClick("About")}>About Allwin</button>
                                         <button onClick={() => handleButtonClick("Achievements")}>Achievements</button>
-                                        <button onClick={() => handleButtonClick("Contact Me")}>Contact Me</button>
+                                        <button onClick={() => handleButtonClick("Contact Me")}>Contact Allwin</button>
                                         <button onClick={() => handleButtonClick("Projects")}>Projects</button>
                                         {/* <button onClick={() => handleButtonClick("social media")}>Social medias</button> */}
                                     </div>
@@ -384,7 +388,7 @@ export default function ChatBot() {
                                 className="input-field"
                             />
                         )}
-                        <button onClick={sendMessage} className="send-button"><FontAwesomeIcon icon={faPaperPlane} /></button>
+                        <button onClick={sendMessage} className="send-button"><FontAwesomeIcon icon={faPaperPlane} size="lg" /></button>
                     </div>
                 </div>
             )}
