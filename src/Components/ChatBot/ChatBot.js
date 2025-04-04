@@ -9,6 +9,7 @@ import "react-phone-input-2/lib/style.css";
 import { Filter } from "bad-words";
 
 export default function ChatBot() {
+
     const chatbotRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([]);
@@ -122,7 +123,7 @@ export default function ChatBot() {
         "regret", "sick", "tired", "ashamed", "gloomy", "depressing", "depressed",
         "pointless", "horrid", "hateful", "shameful", "abysmal", "appalling",
         "inferior", "insulting", "loathsome", "lousy", "mediocre", "miserable",
-        "offensive", "pathetic", "repulsive", "scornful", "troublesome", 
+        "offensive", "pathetic", "repulsive", "scornful", "troublesome",
         "vile", "wicked", "wretched", "nasty", "heartbreaking", "despair",
         "incompetent", "regretful", "unhappy", "undesirable", "unfair",
         "unforgivable", "unpleasant", "unworthy", "worthless", "nothing", "devastating"
@@ -132,7 +133,7 @@ export default function ChatBot() {
         "facebook", "fb", "instagram", "insta", "twitter", "x", "linkedin",
         "threads", "social media", "github", "git", "snapchat", "sc", "tiktok",
         "reddit", "discord", "telegram", "whatsapp", "yt", "youtube", "pinterest",
-        "social medias" , "social"
+        "social medias", "social"
     ];
 
     const contactWords = [
@@ -142,28 +143,42 @@ export default function ChatBot() {
     ];
 
     const greetings = [
-        "hi", "hello", "hey", "hii", "allwin", "greetings"
+        "hi", "hello", "hey", "hii", "greetings"
     ];
 
     const getBotResponse = (query) => {
 
         const lowerCaseQuery = query.toLowerCase();
-        if (filter.isProfane(lowerCaseQuery)) {
-            return "This message may contain language that could be considered inappropriate or sensitive. I can't help you with this";
+        if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
+            return {
+                text: "Here are the social media links:",
+                showSocialButtons: true,
+            };
         }
+        if (conversationStep <= 0) {
 
-        if (!/^[a-zA-Z0-9\s.,!?'\-+*/\\^%$#@&=<>{}[\]()_|~`]+$/.test(query)) {
-            return "Currently, I only know English";
-        }
+            if (filter.isProfane(lowerCaseQuery)) {
+                return "This message may contain language that could be considered inappropriate or sensitive. I can't help you with this";
+            }
 
-        if (greetings.some(word => lowerCaseQuery.includes(word))) {
-            return "Hello! How can I assist you today? Just ask me, I'm always happy to help!";
-        }
-        if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
-            return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
-        }
-        if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
-            return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
+            if (!/^[a-zA-Z0-9\s.,!?'\-+*/\\^%$#@&=<>{}[\]()_|~`]+$/.test(query)) {
+                return "Currently, I only know English";
+            }
+
+            if (greetings.some(word => lowerCaseQuery.includes(word))) {
+                return "Hello! How can I assist you today? Just ask me, I'm always happy to help!";
+            }
+            if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
+                return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
+            }
+            if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
+                return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
+            }
+
+            if (contactWords.some(word => lowerCaseQuery.includes(word))) {
+                setConversationStep(1);
+                return "Sure! Please provide your Name";
+            }
         }
         if (conversationStep === 0) {
             if (lowerCaseQuery.includes("name")) return `My creator's name is ${profileData.name}`;
@@ -179,15 +194,18 @@ export default function ChatBot() {
                 };
             }
 
-            if (contactWords.some(word => lowerCaseQuery.includes(word))) {
-                setConversationStep(1);
-                return "Sure! Please provide your Name";
-            }
-
-            return "I'm not sure, but I'm learning!";
         }
 
         if (conversationStep === 1) {
+            if (filter.isProfane(query)) {
+                return "Your name seems to contain inappropriate language. Please enter a valid name";
+            }
+            if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
+                return "I think you have entered a wrong name. Please enter a valid name";
+            }
+            if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
+                return "You meant Social media? If you wish to know my social media links, you can ask me after providing your contact details";
+            }
             if (!/^[a-zA-Z\s]{3,}$/.test(query)) {
                 return "Invalid name. It should be at least 3 characters long and contain only letters";
             }
@@ -200,12 +218,15 @@ export default function ChatBot() {
             setFormattedName(formatted);
             setFormData({ ...formData, name: formatted });
             setConversationStep(2);
-            return `Got it, ${formatted}! Now, please enter your Email address to contact you`;
+            return `Got it, ${formatted}! Now, please enter your Email address to contact you. Make sure your email is real and be active`;
         }
 
 
         if (conversationStep === 2) {
             const lowerCaseEmail = query.toLowerCase();
+            if (filter.isProfane(query)) {
+                return "The email you entered contains inappropriate language. Please enter a valid email address";
+            }
             if (
                 !lowerCaseEmail.includes("@") ||
                 !lowerCaseEmail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) ||
@@ -221,7 +242,9 @@ export default function ChatBot() {
         if (conversationStep === 3) {
             const cleanedPhone = query.replace(/\D/g, "");
 
-
+            if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
+                return "You meant Social media? If you wish to know my social media links, you can ask me after providing your contact details";
+            }
             if (cleanedPhone.length !== phoneLength) {
                 return `Invalid phone number length. Expected ${phoneLength} digits`;
             }
@@ -231,9 +254,10 @@ export default function ChatBot() {
             return `Almost done, ${formattedName}! Please enter the message you would like to send to Allwin`;
         }
 
-
-
         if (conversationStep === 4) {
+            if (filter.isProfane(query)) {
+                return "Your message contains inappropriate language. Please rephrase it politely";
+            }
             setFormData((prevFormData) => ({
                 ...prevFormData,
                 message: query,
@@ -267,7 +291,7 @@ export default function ChatBot() {
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
-            sendMessage(input);
+            sendMessage();
         }
     };
 
@@ -326,7 +350,7 @@ export default function ChatBot() {
                                     <div className="predefined-buttons">
                                         <button onClick={() => handleButtonClick("About")}>About Allwin</button>
                                         <button onClick={() => handleButtonClick("Achievements")}>Achievements</button>
-                                        <button onClick={() => handleButtonClick("Contact Me")}>Contact Allwin</button>
+                                        <button onClick={() => handleButtonClick("Contact")}>Contact Allwin</button>
                                         <button onClick={() => handleButtonClick("Projects")}>Projects</button>
                                         {/* <button onClick={() => handleButtonClick("social media")}>Social medias</button> */}
                                     </div>
