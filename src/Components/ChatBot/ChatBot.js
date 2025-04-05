@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import profileData from "./profileData.json";
 import "./ChatBot.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +10,7 @@ import "react-phone-input-2/lib/style.css";
 import { Filter } from "bad-words";
 
 export default function ChatBot() {
-
+    const navigate = useNavigate();
     const chatbotRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([]);
@@ -139,13 +140,24 @@ export default function ChatBot() {
     const contactWords = [
         "contact", "message", "reach", "call", "email", "phone", "support",
         "help", "assistance", "enquiry", "inquiry", "chat", "talk", "speak",
-        "customer service", "helpdesk", "request", "info", "details", "query"
+        "customer service", "helpdesk", "request", "details", "query"
     ];
 
     const greetings = [
         "hi", "hello", "hey", "hii", "greetings"
     ];
-
+    const achievementKeywords = [
+        "achievement", "award", "symposium", "event"
+    ];
+    const nameKeywords = [
+        "name", "made", "creator"
+    ]
+    const aboutKeywords = [
+        "about", "info"
+    ]
+    const educationKeywords = [
+        "education", "learn", "study", "university", "college"
+    ]
     const getBotResponse = (query) => {
 
         const lowerCaseQuery = query.toLowerCase();
@@ -154,6 +166,21 @@ export default function ChatBot() {
                 text: "Here are the social media links:",
                 showSocialButtons: true,
             };
+        }
+        if (achievementKeywords.some(word => lowerCaseQuery.includes(word))) {
+            return {
+                text: "Here are the achievements",
+                showAchievementButton: true
+            };
+        }
+        if (nameKeywords.some(word => lowerCaseQuery.includes(word))) {
+            return `My creator's name is ${profileData.name}`
+        }
+        if (aboutKeywords.some(word => lowerCaseQuery.includes(word))) {
+            return `${profileData.about}`
+        }
+        if (educationKeywords.some(word => lowerCaseQuery.includes(word))) {
+            return `${profileData.name} is currently studying at ${profileData.college}`
         }
         if (conversationStep <= 0) {
 
@@ -181,12 +208,9 @@ export default function ChatBot() {
             }
         }
         if (conversationStep === 0) {
-            if (lowerCaseQuery.includes("name")) return `My creator's name is ${profileData.name}`;
             if (lowerCaseQuery.includes("skills")) return `Here are some skills: ${profileData.skills.join(", ")}`;
-            if (lowerCaseQuery.includes("college")) return `Currently studying at ${profileData.college}`;
             if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n\n${profileData.projects.join(", \n\n")}`;
-            if (lowerCaseQuery.includes("achievements")) return `Here are some achievements: \n\n${profileData.achievements.join("\n\n")}`;
-            if (lowerCaseQuery.includes("about")) return `${profileData.about}`;
+
             if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
                 return {
                     text: "Here are the social media links:",
@@ -283,7 +307,7 @@ export default function ChatBot() {
             if (typeof botResponse === "string") {
                 setMessages((prev) => [...prev, { sender: "bot", text: botResponse }]);
             } else {
-                setMessages((prev) => [...prev, { sender: "bot", text: botResponse.text, showSocialButtons: botResponse.showSocialButtons }]);
+                setMessages((prev) => [...prev, { sender: "bot", text: botResponse.text, showSocialButtons: botResponse.showSocialButtons, showAchievementButton: botResponse.showAchievementButton }]);
             }
 
         }, 1500);
@@ -310,7 +334,8 @@ export default function ChatBot() {
                 setMessages((prev) => [...prev, {
                     sender: "bot",
                     text: botResponse.text,
-                    showSocialButtons: botResponse.showSocialButtons || false
+                    showSocialButtons: botResponse.showSocialButtons || false,
+                    showAchievementButton: botResponse.showAchievementButton || false
                 }]);
             }
 
@@ -346,6 +371,7 @@ export default function ChatBot() {
                         {messages.map((msg, index) => (
                             <div key={index} className={`chat-message ${msg.sender === "user" ? "user-message" : "bot-message"}`}>
                                 {msg.text}
+
                                 {msg.showButtons && conversationStep === 0 && (
                                     <div className="predefined-buttons">
                                         <button onClick={() => handleButtonClick("About")}>About Allwin</button>
@@ -365,7 +391,11 @@ export default function ChatBot() {
                                         <button onClick={() => window.open("https://x.com/ekallwin", "_blank")}>X (Twitter)</button>
                                     </div>
                                 )}
-
+                                {msg.showAchievementButton && (
+                                    <div className="predefined-buttons">
+                                        <button onClick={() => navigate("/achievements")}>View Achievements</button>
+                                    </div>
+                                )}
                                 {msg.sender === "bot" &&
                                     msg.text !== "Hello! How can I assist you today? Just ask me I'm always happy to help!" && msg.text !== "Sending your message..." &&
                                     (

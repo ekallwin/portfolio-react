@@ -14,7 +14,7 @@
     padding: 5px 5px;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -117,9 +117,10 @@
 }
 
 .chat-message {
-    padding: 8px 12px;
+    padding: 4px 14px;
     border-radius: 5px;
     max-width: 80%;
+    font-size: 14px;
 }
 
 .user-message {
@@ -146,13 +147,6 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     outline: none;
-}
-
-.timestamp {
-    font-size: 12px;
-    color: gray;
-    margin-top: 2px;
-    text-align: right;
 }
 
 .send-button {

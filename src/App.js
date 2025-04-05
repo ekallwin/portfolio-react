@@ -5,7 +5,7 @@ import { NotificationContainer } from 'react-notifications';
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import 'react-notifications/lib/notifications.css';
-
+import ScrollToTop from './ScrollToTop'
 import Home from "./Home"
 import Projects from "./Components/project"
 import Achievements from "./Components/achievements"
@@ -27,6 +27,7 @@ function App() {
         theme="colored"
         transition={Bounce}
       />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />

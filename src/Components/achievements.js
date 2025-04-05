@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./achievements.css";
-import DMI from "./Carousel/DMI College Symposium.jpg";
-import Amrita from "./Carousel/Amrita College Symposium.jpg";
-import AVCE from "./Carousel/AVCE College Symposium.jpg";
-import Navbar from "./navbar";
-import Footer from "./footer";
-import ChatBot from "./ChatBot/ChatBot"
+import './achievements.css';
+import DMI from './Carousel/DMI College Symposium.jpg';
+import Amrita from './Carousel/Amrita College Symposium.jpg';
+import AVCE from './Carousel/AVCE College Symposium.jpg';
+import SXCCE from './Carousel/St Xavier Symposium.jpg'
+import Navbar from './navbar';
+import Footer from './footer';
+import ChatBot from './ChatBot/ChatBot'
 
 const Carousel = () => {
   const slides = [
@@ -21,6 +22,10 @@ const Carousel = () => {
       image: AVCE,
       caption: "3rd Prize in Technical Quiz at Annai Vailankanni College Of Engineering, Azhagappapuram",
     },
+    {
+      image: SXCCE,
+      caption: "1st Prize in Paper Presentation and 2nd Prize in Ad Mad (Non technical) at St. Xavier's Catholic College of Engineering, Chunkankadai",
+    }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
