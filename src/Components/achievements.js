@@ -24,7 +24,7 @@ const Carousel = () => {
     },
     {
       image: SXCCE,
-      caption: "1st Prize in Paper Presentation and 2nd Prize in Ad Mad (Non technical) at St. Xavier's Catholic College of Engineering, Chunkankadai",
+      caption: "1st Prize in Paper Presentation at St. Xavier's Catholic College of Engineering, Chunkankadai",
     }
   ];
 
