@@ -5,6 +5,7 @@ import Amrita from './Carousel/Amrita College Symposium.jpg';
 import AVCE from './Carousel/AVCE College Symposium.jpg';
 import SXCCE from './Carousel/St Xavier Symposium.jpg';
 import Loyola from './Carousel/Loyola.jpg';
+import Amrita2025 from './Carousel/Amrita2025.jpg'
 import Navbar from './navbar';
 import Footer from './footer';
 import ChatBot from './ChatBot/ChatBot'
@@ -30,6 +31,10 @@ const Carousel = () => {
     {
       image: Loyola,
       caption: "1st Prize in Quiz at Loyola Institute of Technology and Science, Thovalai",
+    },
+    {
+      image: Amrita2025,
+      caption: "2nd Prize in Web designing at Amrita College of Engineering and Technology, Erachakulam",
     }
   ];
 
