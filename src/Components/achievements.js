@@ -8,7 +8,7 @@ import Loyola from './Carousel/Loyola.jpg';
 import Amrita2025 from './Carousel/Amrita2025.jpg'
 import Navbar from './navbar';
 import Footer from './footer';
-import ChatBot from './ChatBot/ChatBot'
+import ChatBot from './ChatBot/ChatBot';
 
 const Carousel = () => {
   const slides = [
@@ -39,8 +39,11 @@ const Carousel = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === slides.length - 1 ? 0 : prevIndex + 1
@@ -48,7 +51,7 @@ const Carousel = () => {
     }, 7000);
 
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [isPaused, slides.length]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -66,11 +69,24 @@ const Carousel = () => {
     setCurrentIndex(index);
   };
 
+  const togglePause = () => {
+    setIsPaused((prev) => !prev);
+  };
+
   return (
     <>
       <Navbar />
       <div className="carousel">
-        <button className="prev" onClick={handlePrev}>❮</button>
+        <button
+          className="prev"
+          onClick={(e) => {
+            e.stopPropagation();
+            handlePrev();
+          }}
+        >
+          ❮
+        </button>
+        
         <div
           className="carousel-slide"
           style={{
@@ -79,12 +95,27 @@ const Carousel = () => {
         >
           {slides.map((slide, index) => (
             <div key={index} className="carousel-item">
-              <img src={slide.image} alt={`Slide ${index + 1}`} />
+              <img
+                src={slide.image}
+                alt={`Slide ${index + 1}`}
+                onClick={togglePause}
+                style={{ cursor: "pointer" }}
+              />
             </div>
           ))}
         </div>
-        <button className="next" onClick={handleNext}>❯</button>
+
+        <button
+          className="next"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleNext();
+          }}
+        >
+          ❯
+        </button>
       </div>
+
       <div className="carousel-dots">
         {slides.map((_, index) => (
           <span
@@ -94,9 +125,11 @@ const Carousel = () => {
           ></span>
         ))}
       </div>
+
       <div className="carousel-caption">
         <p>{slides[currentIndex].caption}</p>
       </div>
+
       <ChatBot />
       <Footer />
     </>
