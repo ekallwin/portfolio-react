@@ -27,7 +27,7 @@ const Carousel = () => {
     {
       image: SXCCE,
       caption: "1st Prize in Paper Presentation at St. Xavier's Catholic College of Engineering, Chunkankadai",
-    }, 
+    },
     {
       image: Loyola,
       caption: "1st Prize in Quiz at Loyola Institute of Technology and Science, Thovalai",
@@ -86,7 +86,7 @@ const Carousel = () => {
         >
           ❮
         </button>
-        
+
         <div
           className="carousel-slide"
           style={{

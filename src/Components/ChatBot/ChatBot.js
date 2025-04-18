@@ -209,7 +209,7 @@ export default function ChatBot() {
         }
         if (conversationStep === 0) {
             if (lowerCaseQuery.includes("skills")) return `Here are some skills: ${profileData.skills.join(", ")}`;
-            if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n\n${profileData.projects.join(", \n\n")}`;
+            if (lowerCaseQuery.includes("projects")) return `Projects build by Allwin are: \n \n${profileData.projects.join(", \n")}`;
 
             if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
                 return {
