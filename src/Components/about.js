@@ -1,5 +1,5 @@
 import Allwin from "./Images/Allwin.jpg";
-import Resume from "./Resume/Resume.pdf"
+import Resume from "./Resume/Resume.pdf";
 import { toast } from "react-toastify";
 import { useEffect, useRef } from "react";
 function About() {
