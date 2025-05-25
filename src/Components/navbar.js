@@ -12,13 +12,13 @@ function Navbar() {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  const handleThemeToggle = (event) => {
-    if (event.target.checked) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  };
+  // const handleThemeToggle = (event) => {
+  //   if (event.target.checked) {
+  //     document.body.classList.add("dark-mode");
+  //   } else {
+  //     document.body.classList.remove("dark-mode");
+  //   }
+  // };
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -66,13 +66,7 @@ function Navbar() {
           <li>
             <HashLink to="/#Contact" className="navbar-link" smooth onClick={closeMenu}>Contact me</HashLink>
           </li>
-          <li>
-            <input
-              type="checkbox"
-              className="theme-checkbox"
-              onChange={handleThemeToggle}
-            />
-          </li>
+          {/* <li> <input type="checkbox" className="theme-checkbox" onChange={handleThemeToggle} /></li> */}
         </ul>
       </nav>
     </>

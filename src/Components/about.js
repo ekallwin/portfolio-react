@@ -55,7 +55,7 @@ function About() {
       link.href = Resume;
       link.download = 'Resume.pdf';
       link.click();
-    }, 6000);
+    }, 5500);
   };
 
   useEffect(() => {

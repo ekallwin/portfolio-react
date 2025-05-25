@@ -242,7 +242,7 @@ export default function ChatBot() {
             setFormattedName(formatted);
             setFormData({ ...formData, name: formatted });
             setConversationStep(2);
-            return `Got it, ${formatted}! Now, please enter your Email address to contact you. Make sure your email is real and be active`;
+            return `Alright, ${formattedName}! Please enter your email address. Make sure it’s real and that you’re active on it.`;
         }
 
 
@@ -260,7 +260,7 @@ export default function ChatBot() {
             }
             setFormData({ ...formData, email: lowerCaseEmail });
             setConversationStep(3);
-            return `Thanks, ${formattedName}! Now, please enter your phone number. I will use this to contact you, so make sure to enter the Phone correct number`;
+            return `Thank you, ${formattedName}! Please enter your phone number. This will be used to contact you, so ensure it’s accurate.`;
         }
 
         if (conversationStep === 3) {
@@ -275,7 +275,7 @@ export default function ChatBot() {
 
             setFormData({ ...formData, phone: query });
             setConversationStep(4);
-            return `Almost done, ${formattedName}! Please enter the message you would like to send to Allwin`;
+            return `${formattedName}, Type your message below to send it to Allwin.`;
         }
 
         if (conversationStep === 4) {
