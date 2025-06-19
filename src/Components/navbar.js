@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
-
+import './navbar.css';
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef(null);
@@ -11,14 +11,6 @@ function Navbar() {
   const toggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
-
-  // const handleThemeToggle = (event) => {
-  //   if (event.target.checked) {
-  //     document.body.classList.add("dark-mode");
-  //   } else {
-  //     document.body.classList.remove("dark-mode");
-  //   }
-  // };
 
   const closeMenu = () => {
     setIsOpen(false);

@@ -2,6 +2,7 @@ import Allwin from "./Images/Allwin.jpg";
 import Resume from "./Resume/Resume.pdf";
 import { toast } from "react-toastify";
 import { useEffect, useRef } from "react";
+import './about.css'
 function About() {
 
   let hasDownloaded = false;
@@ -20,7 +21,7 @@ function About() {
     }
 
     if (hasDownloaded) {
-      toast.warning('You have already initiated downloaded the resume. Please check in your downloaded files!', {
+      toast.warning('You have already initiated to downloaded the resume. Please check in your downloaded files!', {
         autoClose: 6000,
         closeOnClick: false,
         pauseOnHover: false,
@@ -91,9 +92,9 @@ function About() {
         <div className="About card fade-in" id="Abt" ref={aboutRef}>
           <figure>
             <img src={Allwin} alt="Allwin E K" onContextMenu={(e) => e.preventDefault()} draggable="false" style={{ userSelect: 'none' }} />
-            <figcaption>I am <b>Allwin E K</b>, a passionate Web Developer. I have a solid foundation in Front End technologies like <b>HTML, CSS, JavaScript and React.js</b>, and I love creating user-friendly and responsive web interfaces. I'm currently pursuing a <b>B.E</b> in <b>Computer Science and Engineering</b> at <b>Ponjesly College of Engineering, Nagercoil</b>.
+            <figcaption>&nbsp;&nbsp;&nbsp;&nbsp;I am <b>Allwin E K</b>, a passionate Web Developer. I have a solid foundation in Front End technologies like <b>HTML, CSS, JavaScript and React.js</b>, and I love creating user-friendly and responsive web interfaces. I'm currently pursuing a <b>B.E</b> in <b>Computer Science and Engineering</b> at <b>Ponjesly College of Engineering, Nagercoil</b>.
               <br /><br />
-              I strongly believe in continuous learning and improving myself, so I try my best to learn in any situation possible, unfavorable or not.
+              &nbsp;&nbsp;&nbsp;&nbsp;I strongly believe in continuous learning and improving myself, so I try my best to learn in any situation possible, unfavorable or not.
             </figcaption>
             <button className="gradient-button" style={{ fontSize: '20px' }} onClick={handleDownload}>Download Resume</button>
           </figure>

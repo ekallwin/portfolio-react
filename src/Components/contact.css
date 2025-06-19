@@ -1,18 +1,20 @@
+.contact {
+  max-width: 80%;
+  justify-content: center;
+  margin: 0 auto;
+  color: white;
+}
+
 form {
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   font-family: Arial, sans-serif;
   max-width: 100%;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-}
+
 
 label {
   display: block;
@@ -61,7 +63,7 @@ textarea {
 }
 
 .submit {
-  width: 50%;
+  width: 40%;
   color: #fff;
   font-size: 16px;
   border: none;
@@ -72,7 +74,7 @@ textarea {
   margin-bottom: 20px;
   padding: 15px 20px;
   border-radius: 25px;
-  background: linear-gradient(90deg, #D9006D, #CB0084, #9800E1);
+  background-color: #4000F9;
   display: block;
   text-align: center;
 }
@@ -80,7 +82,7 @@ textarea {
 .submit:hover {
   transform: scale(1.1);
   transition: 0.9s;
-  background: linear-gradient(90deg, #9800E1, #CB0084, #D9006D);
+  background-color: #3205B4;
 }
 
 .contact {
@@ -150,12 +152,13 @@ textarea {
 
 @media (max-width: 600px) {
   form {
-    padding: 25px;
+    padding: 35px;
   }
 
   h2 {
     font-size: 20px;
   }
+
   .contact {
     width: 85%;
     margin: auto;

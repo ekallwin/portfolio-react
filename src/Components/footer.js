@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faSquareGithub, faSquareXTwitter, faSquareInstagram, faSquareFacebook, faSquareThreads } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
+import './footer.css';
 function Footer() {
   const Facebook = () => {
     toast.info('Redirecting to Facebook', {

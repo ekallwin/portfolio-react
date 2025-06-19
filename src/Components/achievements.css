@@ -1,3 +1,7 @@
+#achievments {
+  margin-bottom: -90px;
+}
+
 .carousel {
   position: relative;
   width: 100%;
@@ -35,7 +39,7 @@
   left: 50%;
   margin-top: 40px;
   transform: translate(-50%, -50%);
-  color: black;
+  color: white;
   font-family: serif;
   padding: 10px;
   border-radius: 5px;
@@ -74,7 +78,7 @@ button:hover {
 @media (max-width: 768px) {
   .carousel {
     max-width: 90%;
-    margin-top: 150px;
+    margin-top: 130px;
   }
 
   .carousel-caption {
@@ -83,7 +87,7 @@ button:hover {
     margin-top: 60px;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: black;
+    color: white;
     padding: 10px;
     border-radius: 5px;
     font-size: 24px;

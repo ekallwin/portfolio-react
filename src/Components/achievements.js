@@ -43,7 +43,8 @@ const Carousel = () => {
 
   useEffect(() => {
     if (isPaused) return;
-
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === slides.length - 1 ? 0 : prevIndex + 1
@@ -76,6 +77,7 @@ const Carousel = () => {
   return (
     <>
       <Navbar />
+      <h2 style={{ textAlign: 'center' }} id="achievments">Achievements</h2>
       <div className="carousel">
         <button
           className="prev"

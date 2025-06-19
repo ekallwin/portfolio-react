@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import profileData from "./profileData.json";
 import "./ChatBot.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faTimes, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faPaperPlane, faRobot } from "@fortawesome/free-solid-svg-icons";
 import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -42,6 +42,16 @@ export default function ChatBot() {
 
 
     const messagesEndRef = useRef(null);
+
+    const [showComponent, setShowComponent] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowComponent(true);
+        }, 1500);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -83,7 +93,7 @@ export default function ChatBot() {
                     ...prev,
                     {
                         sender: "bot",
-                        text: `${formattedName}, your message has been sent successfully! You will receive an email confirmation shortly!`
+                        text: `${formattedName}, Your message has been sent successfully! You will receive an email confirmation shortly!`
                     }
                 ]);
             })
@@ -242,7 +252,7 @@ export default function ChatBot() {
             setFormattedName(formatted);
             setFormData({ ...formData, name: formatted });
             setConversationStep(2);
-            return `Alright, ${formattedName}! Please enter your email address. Make sure it’s real and that you’re active on it.`;
+            return `Alright, ${formatted}! Please enter your email address. Make sure it's real and that you're active on it.`;
         }
 
 
@@ -275,7 +285,7 @@ export default function ChatBot() {
 
             setFormData({ ...formData, phone: query });
             setConversationStep(4);
-            return `${formattedName}, Type your message below to send it to Allwin.`;
+            return `${formattedName},Now type your message below to send it to Allwin.`;
         }
 
         if (conversationStep === 4) {
@@ -287,7 +297,7 @@ export default function ChatBot() {
                 message: query,
             }));
             setConversationStep(5);
-            return "Sending your message...";
+            return "Sending your message... Please don't close this chat";
         }
 
         return "I'm not sure, but I'm learning!";
@@ -361,10 +371,15 @@ export default function ChatBot() {
 
     return (
         <div className="chat-container" ref={chatbotRef}>
-            <button onClick={toggleChat} className={isOpen ? "chat-close-icon dark-mode" : "chat-open-icon"}>
-                <FontAwesomeIcon icon={isOpen ? faTimes : faComment} size="xl" />
-            </button>
 
+            {showComponent && (
+                <>
+                    <button onClick={toggleChat} className={isOpen ? "chat-close-icon" : "chat-open-icon"}>
+                        <FontAwesomeIcon icon={isOpen ? faTimes : faRobot} size="xl" />
+                    </button>
+
+                </>
+            )}
             {isOpen && (
                 <div className="chat-box">
                     <div className="chat-messages">
@@ -397,7 +412,7 @@ export default function ChatBot() {
                                     </div>
                                 )}
                                 {msg.sender === "bot" &&
-                                    msg.text !== "Hello! How can I assist you today? Just ask me I'm always happy to help!" && msg.text !== "Sending your message..." &&
+                                    msg.text !== "Hello! How can I assist you today? Just ask me I'm always happy to help!" && msg.text !== "Sending your message... Please don't close this chat" &&
                                     (
                                         <div className="restart-chat">
                                             <button onClick={restartChat}>Restart Chat</button>

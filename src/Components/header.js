@@ -1,6 +1,7 @@
 import Typewriter from "typewriter-effect";
 import { toast } from "react-toastify";
 import { useEffect, useRef } from "react";
+import './header.css';
 function Header() {
   const buttonRef = useRef(null);
   const LinkedIn = () => {
@@ -46,7 +47,7 @@ function Header() {
       <h1 id="Home">Allwin E K</h1>
       <div className="item-name" >
         <h2 className="titlename" >Hi, I'm Allwin E K</h2>
-        <div className="typing-effect" style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="typing-effect" style={{ display: 'flex', flexDirection: 'column', color: 'white' }}>
           {/* <h2 className="typewritter" style={{ marginLeft: '25px' }}>I'm</h2> */}
           <h2 className="typewritter"><Typewriter
             options={{

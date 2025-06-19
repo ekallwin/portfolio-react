@@ -1,0 +1,80 @@
+.item-name,
+.titlename {
+    font-family: serif;
+    color: white;
+    text-align: left;
+    margin: 60px 0 10px 20px;
+    font-size: 45px;
+    user-select: none;
+}
+
+.item-name h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: -10px;
+    text-align: left;
+}
+
+.typewriter-text {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.typing-effect {
+    color: white;
+}
+
+.typewritter {
+    color: white;
+}
+
+.gradient-button {
+    color: white;
+    margin: 30px auto;
+    padding: 15px 25px 20px 25px;
+    font-size: 30px;
+    border: none;
+    border-radius: 25px;
+    /* background: linear-gradient(90deg, #D9006D, #CB0084, #9800E1); */
+    background-color: #4000F9;
+    display: block;
+    user-select: none;
+}
+
+.gradient-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.9s;
+    /* background: linear-gradient(90deg, #9800E1, #CB0084, #D9006D); */
+    background-color: #3205B4;
+}
+
+.gradient-button:focus {
+    outline: none;
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    .item-name h2 {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 1px;
+        margin-right: -10px;
+        text-align: left;
+    }
+
+    .item-name,
+    .titlename {
+        font-size: 30px !important;
+        margin-top: 100px;
+    }
+
+    .typing-effect {
+        margin-top: 40px;
+        color: white;
+    }
+}

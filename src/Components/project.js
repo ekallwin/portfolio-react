@@ -4,11 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import ChatBot from "./ChatBot/ChatBot"
+import ChatBot from "./ChatBot/ChatBot";
+import './project.css';
+function Projects() {
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
 
-function projects() {
   const handleLinkClick = (event, url, message) => {
     event.preventDefault();
     toast.info(message, {
@@ -22,6 +28,7 @@ function projects() {
       window.open(url, "_blank", "noopener,noreferrer");
     }, 2500);
   };
+
   return (
     <>
       <Navbar />
@@ -83,4 +90,4 @@ function projects() {
     </>
   )
 }
-export default projects;
+export default Projects;

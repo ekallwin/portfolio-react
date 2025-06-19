@@ -8,6 +8,8 @@ import "./contact.css"
 import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { Filter } from 'bad-words';
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -108,6 +110,11 @@ const ContactForm = () => {
       isValid = false;
     }
     else {
+      const filter = new Filter();
+      if (filter.isProfane(formData.message)) {
+        NotificationManager.error("Message contains inappropriate language", null, 4000);
+        isValid = false;
+      }
       const messageRegex = /^[a-zA-Z0-9.,'"!&\s@%#%^*(){}?+-/]*$/;
       if (!messageRegex.test(formData.message)) {
         NotificationManager.error("Message can only contain alphabets, numbers, and some special symbols", null, 4000);
@@ -120,7 +127,7 @@ const ContactForm = () => {
 
 
   const notify = () => {
-    const toastId = toast.loading("Sending message...", {
+    const toastId = toast.loading("Sending your message... Please don't close this page", {
     });
 
     setTimeout(() => {
@@ -135,7 +142,7 @@ const ContactForm = () => {
         progress: undefined,
         closeButton: true,
       });
-    }, 2000);
+    }, 3000);
   };
 
   const handleSubmit = (e) => {
@@ -217,8 +224,6 @@ const ContactForm = () => {
     }
   }
 
-
-
   return (
     <div className="contact" id="Contact">
       <h2>Contact me</h2>
@@ -245,9 +250,16 @@ const ContactForm = () => {
           <label>Email Address</label>
         </div>
         <div className="input-container">
-          <textarea type="text" name="message" value={formData.message} maxLength={500} onChange={handleChange} placeholder=" " style={{ width: "100%" }} />
+          <textarea type="text" name="message" value={formData.message} maxLength={501} onChange={handleChange} placeholder=" " style={{ width: "100%" }} />
           <label>Your Message</label>
-          <div className="char-count">{formData.message.length}/500</div>
+          <div className={formData.message.length > 490 ? "char-count-max" : "char-count"}>
+            {formData.message.length > 490
+              ? `${Math.max(0, 500 - formData.message.length)} characters left`
+              : `${formData.message.length}/500`}
+          </div>
+
+
+
         </div>
         <button type="submit" className="submit" style={{ marginTop: "10px" }}>Send <FontAwesomeIcon icon={faPaperPlane} /></button>
       </form>
