@@ -85,8 +85,9 @@ figure img {
         border: 2px solid black;
     }
 
-    .Abt .gradient-button {
-        margin-bottom: 15px;
+    #down_btn{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .About {
