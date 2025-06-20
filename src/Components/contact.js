@@ -252,9 +252,9 @@ const ContactForm = () => {
   return (
     <div className="contact" id="Contact">
       <h2>Contact me</h2>
-      <form onSubmit={handleSubmit} className="fade-in-contact" ref={contactRef}>
+      <form onSubmit={handleSubmit} className="fade-in-contact" ref={contactRef} autoComplete="off">
         <div className="input-container">
-          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} />
+          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} autoComplete="off"/>
           <label>Name</label>
         </div>
 
@@ -268,15 +268,16 @@ const ContactForm = () => {
             buttonClass="phone-dropdown-button"
             dropdownClass="phone-dropdown"
             enableSearch={true}
+            autoComplete="off"
           />
         </div>
 
         <div className="input-container" style={{ marginTop: "20px" }}>
-          <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder=" " style={{ width: "100%" }} />
+          <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder=" " autoComplete="off" style={{ width: "100%" }} />
           <label>Email Address</label>
         </div>
         <div className="input-container">
-          <textarea type="text" name="message" value={formData.message} maxLength={501} onChange={handleChange} placeholder=" " style={{ width: "100%" }} />
+          <textarea type="text" name="message" value={formData.message} maxLength={501} onChange={handleChange} placeholder=" " style={{ width: "100%" }} autoComplete="off" />
           <label>Your Message</label>
           <div className={formData.message.length > 490 ? "char-count-max" : "char-count"}>
             {formData.message.length > 490
