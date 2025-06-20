@@ -86,7 +86,7 @@ export default function ChatBot() {
             email: formData.email,
             phone: formData.phone,
             message: formData.message,
-            timestamp: moment().format('YYYY-MM-DD[T]HH:mm:ssZ'),
+            timestamp: moment().add(2, 'seconds').format('YYYY-MM-DD[T]HH:mm:ssZ'),
             sendtime: moment().format('DD-MM-YYYY hh:mm:ss A')
         };
 

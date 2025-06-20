@@ -160,7 +160,7 @@ const ContactForm = () => {
         phone: formData.phone,
         email: formData.email,
         message: formData.message,
-        timestamp: moment().format('YYYY-MM-DD[T]HH:mm:ssZ'),
+        timestamp: moment().add(3, 'seconds').format('YYYY-MM-DD[T]HH:mm:ssZ'),
         sendtime: moment().format('DD-MM-YYYY hh:mm:ss A')
       };
 

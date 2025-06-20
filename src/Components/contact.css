@@ -204,12 +204,9 @@ textarea {
 
 }
 
-
 .country-list .search-emoji {
   display: none !important;
 }
-
-
 
 .phone-input-container {
   position: relative;
@@ -218,7 +215,6 @@ textarea {
 
 .react-tel-input .country-list {
   width: calc(1000% + 10px) !important;
-  margin-top: -35px !important;
   max-height: 300px;
   overflow-y: auto;
   box-sizing: border-box;
