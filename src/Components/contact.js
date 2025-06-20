@@ -10,7 +10,7 @@ import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Filter } from 'bad-words';
-
+import moment from 'moment-timezone';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -155,12 +155,13 @@ const ContactForm = () => {
       const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-
       const templateParams = {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
         message: formData.message,
+        timestamp: moment().format('YYYY-MM-DD[T]HH:mm:ssZ'),
+        sendtime: moment().format('DD-MM-YYYY hh:mm:ss A')
       };
 
       setFormData({

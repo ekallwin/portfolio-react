@@ -8,6 +8,7 @@ import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Filter } from "bad-words";
+import moment from "moment";
 
 export default function ChatBot() {
     const navigate = useNavigate();
@@ -85,6 +86,8 @@ export default function ChatBot() {
             email: formData.email,
             phone: formData.phone,
             message: formData.message,
+            timestamp: moment().format('YYYY-MM-DD[T]HH:mm:ssZ'),
+            sendtime: moment().format('DD-MM-YYYY hh:mm:ss A')
         };
 
         emailjs.send(serviceID, templateID, templateParams, publicKey)

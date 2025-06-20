@@ -2,6 +2,7 @@ import Typewriter from "typewriter-effect";
 import { toast } from "react-toastify";
 import { useEffect, useRef } from "react";
 import './header.css';
+import moment from 'moment';
 function Header() {
   const buttonRef = useRef(null);
   const LinkedIn = () => {
@@ -42,11 +43,23 @@ function Header() {
     };
   }, []);
 
+  const currentHour = moment().hour();
+
+  let greeting = '';
+  if (currentHour >= 0 && currentHour < 12) {
+    greeting = 'Morning';
+  } else if (currentHour >= 12 && currentHour < 15) {
+    greeting = 'Afternoon';
+  } else {
+    greeting = 'Evening';
+  }
+
   return (
     <>
       <h1 id="Home">Allwin E K</h1>
       <div className="item-name" >
-        <h2 className="titlename" >Hi, I'm Allwin E K</h2>
+        <h2 className="titlename" >Good {greeting}!</h2>
+        <h2 className="titlename" >I'm Allwin E K</h2>
         <div className="typing-effect" style={{ display: 'flex', flexDirection: 'column', color: 'white' }}>
           {/* <h2 className="typewritter" style={{ marginLeft: '25px' }}>I'm</h2> */}
           <h2 className="typewritter"><Typewriter

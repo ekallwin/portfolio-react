@@ -22,6 +22,8 @@
     "dictionary-en": "^4.0.0",
     "franc-min": "^6.2.0",
     "i18n-iso-countries": "^7.14.0",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.6.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-fontawesome": "^1.7.1",

@@ -2,7 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faSquareGithub, faSquareXTwitter, faSquareInstagram, faSquareFacebook, faSquareThreads } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
 import './footer.css';
+import moment from 'moment';
+
 function Footer() {
+  const currentYear = moment().format('YYYY');
+  
   const Facebook = () => {
     toast.info('Redirecting to Facebook', {
       autoClose: 3000,
@@ -93,7 +97,7 @@ function Footer() {
           </div>
 
           <div className="footer-copyright">
-            <p>&copy; {new Date().getFullYear()} Created, Developed and maintained by <a href="#About">Allwin E K</a></p>
+            <p>&copy; {currentYear} Created, Developed and maintained by <a href="#About">Allwin E K</a></p>
           </div>
         </div>
       </footer>

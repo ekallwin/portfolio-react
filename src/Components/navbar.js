@@ -58,7 +58,6 @@ function Navbar() {
           <li>
             <HashLink to="/#Contact" className="navbar-link" smooth onClick={closeMenu}>Contact me</HashLink>
           </li>
-          {/* <li> <input type="checkbox" className="theme-checkbox" onChange={handleThemeToggle} /></li> */}
         </ul>
       </nav>
     </>
