@@ -35,9 +35,6 @@
 }
 
 @media (max-width: 768px) {
-    .chat-box {
-        margin: 0 auto;
-    }
     .chat-container {
         position: fixed;
         bottom: 18%;
@@ -89,8 +86,7 @@
 }
 
 .chat-box {
-    min-width: 45%;
-    margin: 0 auto;
+    width: 400px;
     background: white;
     border: 1px solid #ddd;
     border-radius: 10px;
