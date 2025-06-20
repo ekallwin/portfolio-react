@@ -11,7 +11,7 @@
     background-color: rgba(173, 216, 230, 0.5);
     color: #007bff;
     border: 2px solid #007bff;
-    padding: 5px 5px;
+    padding: 3px;
     border-radius: 10px;
     font-weight: bold;
     font-size: 14px;
@@ -37,7 +37,7 @@
 @media (max-width: 768px) {
     .chat-container {
         position: fixed;
-        bottom: 11%;
+        bottom: 13%;
         right: 5px;
         display: flex;
         flex-direction: column;
@@ -52,15 +52,15 @@
 
 .chat-open-icon:focus {
     outline: none;
-    background-color: #007bff;
+    background-color: #4000F9;
 }
 
 .chat-open-icon:hover {
-    background-color: #0056b3;
+    background-color: #533cff;
 }
 
 .chat-open-icon {
-    background-color: #007bff;
+    background-color: #4000F9;
     color: white;
     border: none;
     padding: 15px;

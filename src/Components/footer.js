@@ -83,12 +83,15 @@ function Footer() {
           <h4>My social medias</h4>
         </div>
         <div className="footer-text">
-          <FontAwesomeIcon icon={faSquareFacebook} className="Social" size="2xl" onClick={Facebook} />
-          <FontAwesomeIcon icon={faSquareInstagram} className="Social" size="2xl" onClick={Instagram} />
-          <FontAwesomeIcon icon={faSquareXTwitter} className="Social" size="2xl" onClick={Twitter} />
-          <FontAwesomeIcon icon={faSquareThreads} className="Social" size="2xl" onClick={Threads} />
-          <FontAwesomeIcon icon={faLinkedin} className="Social" size="2xl" onClick={LinkedIn} />
-          <FontAwesomeIcon icon={faSquareGithub} className="Social" size="2xl" onClick={Github} />
+          <div className="socials">
+            <FontAwesomeIcon icon={faSquareFacebook} className="Social" size="2xl" onClick={Facebook} />
+            <FontAwesomeIcon icon={faSquareInstagram} className="Social" size="2xl" onClick={Instagram} />
+            <FontAwesomeIcon icon={faSquareXTwitter} className="Social" size="2xl" onClick={Twitter} />
+            <FontAwesomeIcon icon={faSquareThreads} className="Social" size="2xl" onClick={Threads} />
+            <FontAwesomeIcon icon={faLinkedin} className="Social" size="2xl" onClick={LinkedIn} />
+            <FontAwesomeIcon icon={faSquareGithub} className="Social" size="2xl" onClick={Github} />
+          </div>
+
           <div className="footer-copyright">
             <p>&copy; {new Date().getFullYear()} Created, Developed and maintained by <a href="#About">Allwin E K</a></p>
           </div>

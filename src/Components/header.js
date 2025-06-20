@@ -54,7 +54,7 @@ function Header() {
               strings: ["MERN stack Developer", "Designer", "Freelancer"],
               autoStart: true,
               loop: true,
-              deleteSpeed: 50,
+              deleteSpeed: 80,
               delay: 100,
             }}
           />

@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import "react-toastify/dist/ReactToastify.css";
-import "./contact.css"
+import "./contact.css";
+import "./contactres.css";
 import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -206,23 +207,28 @@ const ContactForm = () => {
   }, []);
 
 
-  document.addEventListener("DOMContentLoaded", function () {
-    adjustDropdownWidth();
+  useEffect(() => {
+    const updateDropdownWidth = () => {
+      const phoneInput = document.querySelector('.react-tel-input');
+      const dropdown = document.querySelector('.country-list');
 
-    setTimeout(adjustDropdownWidth, 100);
+      if (phoneInput && dropdown) {
+        const viewportWidth = window.innerWidth;
+        const baseWidth = phoneInput.offsetWidth;
 
-    window.addEventListener("resize", adjustDropdownWidth);
-  });
+        const ratio = 0.95 + (600 - Math.min(600, viewportWidth)) * 0.0005;
 
-  function adjustDropdownWidth() {
-    const phoneInput = document.querySelector(".phone-input");
-    const phoneDropdown = document.querySelector(".phone-dropdown");
+        dropdown.style.width = `${baseWidth * ratio}px`;
+      }
+    };
 
-    if (phoneInput && phoneDropdown) {
-      const inputWidth = phoneInput.getBoundingClientRect().width;
-      phoneDropdown.style.width = `${inputWidth}px`;
-    }
-  }
+    updateDropdownWidth();
+
+    const resizeObserver = new ResizeObserver(updateDropdownWidth);
+    resizeObserver.observe(document.body);
+
+    return () => resizeObserver.disconnect();
+  }, []);
 
   return (
     <div className="contact" id="Contact">
@@ -242,6 +248,7 @@ const ContactForm = () => {
             containerClass="phone-input-container"
             buttonClass="phone-dropdown-button"
             dropdownClass="phone-dropdown"
+            enableSearch={true}
           />
         </div>
 

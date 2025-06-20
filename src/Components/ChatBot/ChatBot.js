@@ -447,6 +447,7 @@ export default function ChatBot() {
                                 containerClass="phone-input-container"
                                 buttonClass="phone-dropdown-button"
                                 dropdownClass="phone-dropdown"
+                                enableSearch={true}
                             />
                         ) : (
                             <input
