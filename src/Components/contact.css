@@ -15,7 +15,7 @@ form {
 
 form {
   position: relative;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(2px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 30px;
