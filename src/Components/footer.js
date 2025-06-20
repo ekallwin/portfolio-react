@@ -88,12 +88,12 @@ function Footer() {
         </div>
         <div className="footer-text">
           <div className="socials">
-            <FontAwesomeIcon icon={faSquareFacebook} className="Social" size="2xl" onClick={Facebook} />
-            <FontAwesomeIcon icon={faSquareInstagram} className="Social" size="2xl" onClick={Instagram} />
-            <FontAwesomeIcon icon={faSquareXTwitter} className="Social" size="2xl" onClick={Twitter} />
-            <FontAwesomeIcon icon={faSquareThreads} className="Social" size="2xl" onClick={Threads} />
-            <FontAwesomeIcon icon={faLinkedin} className="Social" size="2xl" onClick={LinkedIn} />
-            <FontAwesomeIcon icon={faSquareGithub} className="Social" size="2xl" onClick={Github} />
+            <FontAwesomeIcon icon={faSquareFacebook} className="Social" size="xl" onClick={Facebook} />
+            <FontAwesomeIcon icon={faSquareInstagram} className="Social" size="xl" onClick={Instagram} />
+            <FontAwesomeIcon icon={faSquareXTwitter} className="Social" size="xl" onClick={Twitter} />
+            <FontAwesomeIcon icon={faSquareThreads} className="Social" size="xl" onClick={Threads} />
+            <FontAwesomeIcon icon={faLinkedin} className="Social" size="xl" onClick={LinkedIn} />
+            <FontAwesomeIcon icon={faSquareGithub} className="Social" size="xl" onClick={Github} />
           </div>
 
           <div className="footer-copyright">

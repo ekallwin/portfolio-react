@@ -2,6 +2,8 @@ import Allwin from "./Images/Allwin.jpg";
 import Resume from "./Resume/Resume.pdf";
 import { toast } from "react-toastify";
 import { useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import './about.css'
 function About() {
 
@@ -96,7 +98,7 @@ function About() {
               <br /><br />
               &nbsp;&nbsp;&nbsp;&nbsp;I strongly believe in continuous learning and improving myself, so I try my best to learn in any situation possible, unfavorable or not.
             </figcaption>
-            <button className="gradient-button" id="down_btn" style={{ fontSize: '20px' }} onClick={handleDownload}>Download Resume</button>
+            <button className="gradient-button-down" id="down_btn" style={{ fontSize: '20px' }} onClick={handleDownload}>Download Resume <FontAwesomeIcon icon={faDownload} /></button>
           </figure>
         </div>
       </div>

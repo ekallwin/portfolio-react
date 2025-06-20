@@ -59,13 +59,30 @@ const ContactForm = () => {
 
     const nameRegex = /^[a-zA-Z\s]+$/;
     const consecutiveIdenticalRegex = /([a-zA-Z])\1{2,}/i;
-    const consecutiveSequenceRegex = /([a-zA-Z])\2{6,}/;
+
+    function hasAlphabeticalSequence(str, sequenceLength = 6) {
+      const input = str.toLowerCase().replace(/\s+/g, '');
+      for (let i = 0; i <= input.length - sequenceLength; i++) {
+        let match = true;
+        for (let j = 1; j < sequenceLength; j++) {
+          if (input.charCodeAt(i + j) !== input.charCodeAt(i + j - 1) + 1) {
+            match = false;
+            break;
+          }
+        }
+        if (match) return true;
+      }
+      return false;
+    }
 
     if (!formData.name.trim()) {
       NotificationManager.error("Name is required", null, 4000);
       isValid = false;
-    } else if (formData.name.trim().length < 3) {
+    } else if (formData.name.trim().length < 1) {
       NotificationManager.error(`Invalid name "${formData.name.trim()}"`, null, 4000);
+      isValid = false;
+    } else if (formData.name.trim().length > 50) {
+      NotificationManager.error(`Invalid name`, null, 4000);
       isValid = false;
     } else if (!nameRegex.test(formData.name)) {
       NotificationManager.error(`Invalid name "${formData.name.trim()}"`, null, 4000);
@@ -73,10 +90,11 @@ const ContactForm = () => {
     } else if (consecutiveIdenticalRegex.test(formData.name.replace(/\s+/g, ''))) {
       NotificationManager.error(`Invalid name "${formData.name.trim()}"`, null, 4000);
       isValid = false;
-    } else if (consecutiveSequenceRegex.test(formData.name.replace(/\s+/g, ''))) {
+    } else if (hasAlphabeticalSequence(formData.name)) {
       NotificationManager.error(`Invalid name "${formData.name.trim()}"`, null, 4000);
       isValid = false;
     }
+
 
     const cleanedPhone = formData.phone.replace(/\D/g, "");
 

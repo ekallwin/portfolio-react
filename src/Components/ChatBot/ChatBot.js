@@ -243,9 +243,37 @@ export default function ChatBot() {
             if (socialMediaWords.some(word => lowerCaseQuery.includes(word))) {
                 return "You meant Social media? If you wish to know my social media links, you can ask me after providing your contact details";
             }
-            if (!/^[a-zA-Z\s]{3,}$/.test(query)) {
-                return "Invalid name. It should be at least 3 characters long and contain only letters";
+            if (!/^[a-zA-Z\s]{1,}$/.test(query)) {
+                return "Oops! That doesn't look like a valid name";
             }
+            if (!/^[a-zA-Z\s]{1,50}$/.test(query)) {
+                return "Oops! That doesn't look like a long name";
+            }
+
+            const cleanedQuery = query.replace(/\s+/g, '');
+            function hasAlphabeticalSequence(name) {
+                const lower = name.toLowerCase().replace(/[^a-z]/g, '');
+                for (let i = 0; i <= lower.length - 5; i++) {
+                    let isSequential = true;
+                    for (let j = 0; j < 4; j++) {
+                        if (lower.charCodeAt(i + j + 1) !== lower.charCodeAt(i + j) + 1) {
+                            isSequential = false;
+                            break;
+                        }
+                    }
+                    if (isSequential) return true;
+                }
+                return false;
+            }
+
+            if (/([a-zA-Z])\1{2,}/.test(cleanedQuery)) {
+                return "Looks like your name is invalid. Can you double-check it?";
+            }
+
+            if (hasAlphabeticalSequence(cleanedQuery)) {
+                return "Looks like your name is invalid. Please enter your real name.";
+            }
+
 
             const formatted = query
                 .split(" ")
@@ -288,7 +316,7 @@ export default function ChatBot() {
 
             setFormData({ ...formData, phone: query });
             setConversationStep(4);
-            return `${formattedName},Now type your message below to send it to Allwin.`;
+            return `${formattedName}, Now type your message below to send it to Allwin.`;
         }
 
         if (conversationStep === 4) {
