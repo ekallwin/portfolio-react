@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import ChatBot from "./ChatBot/ChatBot";
 import './project.css';
 function Projects() {
   useEffect(() => {
@@ -85,7 +84,6 @@ function Projects() {
         </div>
 
       </div>
-      <ChatBot />
       <Footer />
     </>
   )

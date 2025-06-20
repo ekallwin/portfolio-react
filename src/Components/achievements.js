@@ -8,7 +8,6 @@ import Loyola from './Carousel/Loyola.jpg';
 import Amrita2025 from './Carousel/Amrita2025.jpg'
 import Navbar from './navbar';
 import Footer from './footer';
-import ChatBot from './ChatBot/ChatBot';
 
 const Carousel = () => {
   const slides = [
@@ -132,7 +131,6 @@ const Carousel = () => {
         <p>{slides[currentIndex].caption}</p>
       </div>
 
-      <ChatBot />
       <Footer />
     </>
   );
