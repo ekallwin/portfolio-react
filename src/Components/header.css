@@ -32,17 +32,17 @@
 
 .gradient-button {
     position: relative;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255);
     margin: 30px auto;
     padding: 20px 35px;
     font-size: 30px;
     border: none;
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(2px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 16px rgba(31, 38, 135, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 16px rgba(73, 79, 161, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.15);
     display: block;
     user-select: none;
     cursor: pointer;
@@ -54,8 +54,13 @@
 
 .gradient-button:hover {
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.2);
     cursor: pointer;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(2px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 16px rgba(73, 79, 161, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .gradient-button::after {

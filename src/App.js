@@ -8,24 +8,11 @@ import ScrollToTop from './ScrollToTop';
 import Home from "./Home";
 import Projects from "./Components/project";
 import Achievements from "./Components/achievements";
-import { useEffect, useRef } from "react";
 
 function App() {
-const videoRef = useRef(null);
-
-useEffect(() => {
-  if (videoRef.current) {
-    videoRef.current.playbackRate = 3.5;
-  }
-}, []);
 
   return (
-    <div className="app-container">
-      <video autoPlay muted loop className="background-video" ref={videoRef}>
-        <source src={`${process.env.PUBLIC_URL}/Background.mp4`} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
+    <>
     <BrowserRouter>
       <NotificationContainer />
       <ToastContainer
@@ -48,7 +35,7 @@ useEffect(() => {
         <Route path="/achievements" element={<Achievements />} />
       </Routes>
     </BrowserRouter>
-    </div>
+    </>
   );
 }
 

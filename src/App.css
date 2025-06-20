@@ -1,10 +1,15 @@
 body {
+  background-image: url('../public/Background.jpg'); /* Relative to public folder */
   background-color: #080808;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   transition: background-color 0.3s, color 0.3s;
   overflow-x: hidden;
   height: 100vh;
   scroll-behavior: smooth;
 }
+
 
 html {
   overflow-x: hidden;
@@ -137,32 +142,4 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
-}
-
-.video-background-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.app-container {
-  position: relative;
-  z-index: 0;
-}
-
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-}
-
-
-.content-overlay {
-  position: relative;
-  z-index: 1;
 }
