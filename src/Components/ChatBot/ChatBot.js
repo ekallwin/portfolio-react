@@ -57,20 +57,40 @@ export default function ChatBot() {
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
-
+    
     useEffect(() => {
+        const currentHour = moment().hour();
+
+    let greeting = '';
+    if (currentHour >= 0 && currentHour < 12) {
+        greeting = 'Morning';
+    } else if (currentHour >= 12 && currentHour < 15) {
+        greeting = 'Afternoon';
+    } else {
+        greeting = 'Evening';
+    }
         setTimeout(() => {
-            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I'm always happy to help!", showButtons: true }]);
+            setMessages([{ sender: "bot", text: `Good ${greeting}! How can I assist you today? Just ask me I'm always happy to help!`, showButtons: true }]);
             setIsTyping(false);
         }, 3500);
     }, []);
 
     const restartChat = () => {
+        const currentHour = moment().hour();
+
+    let greeting = '';
+    if (currentHour >= 0 && currentHour < 12) {
+        greeting = 'Morning';
+    } else if (currentHour >= 12 && currentHour < 15) {
+        greeting = 'Afternoon';
+    } else {
+        greeting = 'Evening';
+    }
         setMessages([]);
         setIsTyping(true);
         setConversationStep(0);
         setTimeout(() => {
-            setMessages([{ sender: "bot", text: "Hello! How can I assist you today? Just ask me I'm always happy to help!", showButtons: true }]);
+            setMessages([{ sender: "bot", text: `Good ${greeting}! How can I assist you today? Just ask me I'm always happy to help!`, showButtons: true }]);
             setIsTyping(false);
         }, 2000);
     };
