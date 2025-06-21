@@ -49,7 +49,7 @@ export default function ChatBot() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowComponent(true);
-        }, 1500);
+        }, 3000);
 
         return () => clearTimeout(timer);
     }, []);
