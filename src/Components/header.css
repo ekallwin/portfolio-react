@@ -54,7 +54,7 @@
 
 .gradient-button:hover {
     color: white;
-    transform: scale(1.2);
+    transform: scale(1.15);
     cursor: pointer;
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(2px) saturate(180%);

@@ -1,5 +1,6 @@
 body {
-  background-image: url('../public/Background.jpg'); /* Relative to public folder */
+  background-image: url('../public/Background.jpg');
+  /* Relative to public folder */
   background-color: #080808;
   background-size: cover;
   background-position: center;
@@ -35,7 +36,7 @@ li {
 }
 
 .char-count {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: -10px;
   text-align: left;
   color: black;
@@ -43,7 +44,7 @@ li {
 
 .char-count-max {
   color: red;
-  font-size: 16px;
+  font-size: 18px;
   margin-top: -10px;
 }
 
@@ -105,21 +106,15 @@ span {
   opacity: 1;
 }
 
-
 .show {
   opacity: 1;
   transform: translateX(0);
 }
 
-
-
-
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
   }
-
-
 
   .toast-container {
     text-align: left;
@@ -133,8 +128,6 @@ div h2 {
   font-size: 45px;
 }
 
-
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -143,12 +136,15 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+nav,
 button {
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+
 footer {
   user-select: none;
   -webkit-user-select: none;
