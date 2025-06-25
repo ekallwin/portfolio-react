@@ -112,37 +112,8 @@ figure img {
     transition: color 0.3s ease;
 }
 
-.gradient-button-down span {
-    position: relative;
-    z-index: 2;
-}
-
-.gradient-button-down::before,
-.gradient-button-down::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translateX(-50%) scaleX(0);
-    transform-origin: center;
-    background: #ffffff1c;
-    backdrop-filter: blur(45px);
-    -webkit-backdrop-filter: blur(45px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    z-index: -1;
-    pointer-events: none;
-    transition: transform 0.5s ease;
-}
-
-.gradient-button-down:hover::before {
-    transform: translateX(-50%) scaleX(1);
+.gradient-button-down:hover{
+    background-color: #5933FA;
 }
 
 .gradient-button-down:focus {

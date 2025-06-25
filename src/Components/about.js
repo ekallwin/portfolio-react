@@ -62,8 +62,8 @@ function About() {
       link.href = Resume;
       link.download = 'Resume.pdf';
       link.click();
-      setButtonText(<>Download Completed <FontAwesomeIcon icon={faCircleCheck} /></>);
-    }, 5500);
+      setButtonText(<>Download Successful <FontAwesomeIcon icon={faCircleCheck} /></>);
+    }, 5000);
   };
 
   useEffect(() => {
