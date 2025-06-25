@@ -1,13 +1,15 @@
 import Allwin from "./Images/Allwin.jpg";
 import Resume from "./Resume/Resume.pdf";
 import { toast } from "react-toastify";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faHourglassEnd, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import './about.css'
 function About() {
+  const [buttonText, setButtonText] = useState(<>Download Resume <FontAwesomeIcon icon={faDownload} /></>);
 
-  let hasDownloaded = false;
+  const hasDownloadedRef = useRef(false);
+
   const aboutRef = useRef(null);
 
   const handleDownload = () => {
@@ -22,7 +24,7 @@ function About() {
       return;
     }
 
-    if (hasDownloaded) {
+    if (hasDownloadedRef.current) {
       toast.warning('You have already initiated to downloaded the resume. Please check in your downloaded files!', {
         autoClose: 6000,
         closeOnClick: false,
@@ -41,7 +43,9 @@ function About() {
       progress: undefined,
     });
 
-    hasDownloaded = true;
+    hasDownloadedRef.current = true;
+
+    setButtonText(<>Download Pending <FontAwesomeIcon icon={faHourglassEnd} /></>);
 
     setTimeout(() => {
       toast.success('The resume download has been started !', {
@@ -58,6 +62,7 @@ function About() {
       link.href = Resume;
       link.download = 'Resume.pdf';
       link.click();
+      setButtonText(<>Download Completed <FontAwesomeIcon icon={faCircleCheck} /></>);
     }, 5500);
   };
 
@@ -98,7 +103,7 @@ function About() {
               <br /><br />
               &nbsp;&nbsp;&nbsp;&nbsp;I strongly believe in continuous learning and improving myself, so I try my best to learn in any situation possible, unfavorable or not.
             </figcaption>
-            <button className="gradient-button-down" id="down_btn" style={{ fontSize: '20px' }} onClick={handleDownload}>Download Resume <FontAwesomeIcon icon={faDownload} /></button>
+            <button className="gradient-button-down" id="down_btn" style={{ fontSize: '20px' }} onClick={handleDownload}>{buttonText}</button>
           </figure>
         </div>
       </div>

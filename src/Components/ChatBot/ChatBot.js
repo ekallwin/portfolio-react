@@ -57,18 +57,18 @@ export default function ChatBot() {
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
-    
+
     useEffect(() => {
         const currentHour = moment().hour();
 
-    let greeting = '';
-    if (currentHour >= 0 && currentHour < 12) {
-        greeting = 'Morning';
-    } else if (currentHour >= 12 && currentHour < 15) {
-        greeting = 'Afternoon';
-    } else {
-        greeting = 'Evening';
-    }
+        let greeting = '';
+        if (currentHour >= 0 && currentHour < 12) {
+            greeting = 'Morning';
+        } else if (currentHour >= 12 && currentHour < 15) {
+            greeting = 'Afternoon';
+        } else {
+            greeting = 'Evening';
+        }
         setTimeout(() => {
             setMessages([{ sender: "bot", text: `Good ${greeting}! How can I assist you today? Just ask me I'm always happy to help!`, showButtons: true }]);
             setIsTyping(false);
@@ -78,14 +78,14 @@ export default function ChatBot() {
     const restartChat = () => {
         const currentHour = moment().hour();
 
-    let greeting = '';
-    if (currentHour >= 0 && currentHour < 12) {
-        greeting = 'Morning';
-    } else if (currentHour >= 12 && currentHour < 15) {
-        greeting = 'Afternoon';
-    } else {
-        greeting = 'Evening';
-    }
+        let greeting = '';
+        if (currentHour >= 0 && currentHour < 12) {
+            greeting = 'Morning';
+        } else if (currentHour >= 12 && currentHour < 15) {
+            greeting = 'Afternoon';
+        } else {
+            greeting = 'Evening';
+        }
         setMessages([]);
         setIsTyping(true);
         setConversationStep(0);
@@ -275,7 +275,7 @@ export default function ChatBot() {
                 const lower = name.toLowerCase().replace(/[^a-z]/g, '');
                 for (let i = 0; i <= lower.length - 5; i++) {
                     let isSequential = true;
-                    for (let j = 0; j < 4; j++) {
+                    for (let j = 0; j < 3; j++) {
                         if (lower.charCodeAt(i + j + 1) !== lower.charCodeAt(i + j) + 1) {
                             isSequential = false;
                             break;
