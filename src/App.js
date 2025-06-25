@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import { NotificationContainer } from 'react-notifications';
 import { Bounce, ToastContainer } from "react-toastify";
@@ -30,6 +30,7 @@ function App() {
       />
       <ScrollToTop />
       <Routes>
+        <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/achievements" element={<Achievements />} />
