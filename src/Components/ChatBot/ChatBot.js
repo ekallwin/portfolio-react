@@ -436,7 +436,7 @@ export default function ChatBot() {
         const timer = setTimeout(() => {
             setShowComponent(true);
             setShowTooltip(true);
-            setTimeout(() => setShowTooltip(false), 6000);
+            setTimeout(() => setShowTooltip(false), 5000);
         }, 2500);
 
         return () => clearTimeout(timer);
