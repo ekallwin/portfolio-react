@@ -6,8 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import 'react-notifications/lib/notifications.css';
 import ScrollToTop from './ScrollToTop';
 import Home from "./Home";
-import Projects from "./Components/project";
-import Achievements from "./Components/achievements";
+import Projects from "./Components/Projects/project";
+import Achievements from "./Components/Achievements/achievements";
 
 function App() {
 

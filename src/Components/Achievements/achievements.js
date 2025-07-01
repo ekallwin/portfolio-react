@@ -6,8 +6,8 @@ import AVCE from './Carousel/AVCE College Symposium.jpg';
 import SXCCE from './Carousel/St Xavier Symposium.jpg';
 import Loyola from './Carousel/Loyola.jpg';
 import Amrita2025 from './Carousel/Amrita2025.jpg'
-import Navbar from './navbar';
-import Footer from './footer';
+import Navbar from '../Navbar/navbar';
+import Footer from '../Footer/footer';
 
 const Carousel = () => {
   const slides = [

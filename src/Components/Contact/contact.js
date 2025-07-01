@@ -264,7 +264,6 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handlePhoneChange}
             inputClass="phone-input"
-            containerClass="phone-input-container"
             buttonClass="phone-dropdown-button"
             dropdownClass="phone-dropdown"
             enableSearch={true}

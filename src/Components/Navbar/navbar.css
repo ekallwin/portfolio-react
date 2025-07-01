@@ -9,8 +9,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #6f3fff; */
-    background-color: #181818;
+    background-color: rgba(24, 24, 24, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: 5px 0px 5px 20px;
     color: white;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
@@ -83,10 +84,10 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 70px;
         right: 0;
-        background-color: #181818;
-        width: 80%;
+        background-color: rgba(0, 0, 0, 0.85);
+        width: 100%;
         padding: 1rem 0;
         transform: translateY(-100%);
         transition: all 0.3s ease;
@@ -101,7 +102,8 @@
         visibility: visible;
         margin-top: 20px;
         box-shadow: 0 9px 10px rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
+        border-radius: 10px;
+    
     }
 
     .navbar-link {
@@ -111,7 +113,7 @@
 
 
     li {
-        padding: 15px;
+        padding: 10px;
     }
 
     .navbar-link {

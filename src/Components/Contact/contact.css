@@ -163,10 +163,6 @@ textarea {
   left: -20px;
 }
 
-.phone-input-container {
-  width: 100% !important;
-}
-
 .phone-input {
   width: 100% !important;
   box-sizing: border-box;
@@ -204,11 +200,6 @@ textarea {
   display: none !important;
 }
 
-.phone-input-container {
-  position: relative;
-  width: 100%;
-}
-
 .react-tel-input .country-list {
   width: calc(1000% + 10px) !important;
   max-height: 300px;
@@ -218,8 +209,8 @@ textarea {
 }
 
 .react-tel-input .search-box {
-  width: calc(103% - 30px) !important;
-  margin: 0 auto;
+  width: calc(100% - 1px) !important;
+  margin: 0 auto !important;
   display: block;
   margin-top: 1px;
 }

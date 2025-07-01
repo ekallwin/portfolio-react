@@ -1,7 +1,5 @@
 body {
   background-image: url('../public/Background.jpg');
-  /* Relative to public folder */
-  background-color: #080808;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

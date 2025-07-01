@@ -58,23 +58,6 @@ export default function ChatBot() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    useEffect(() => {
-        const currentHour = moment().hour();
-
-        let greeting = '';
-        if (currentHour >= 0 && currentHour < 12) {
-            greeting = 'Morning';
-        } else if (currentHour >= 12 && currentHour < 15) {
-            greeting = 'Afternoon';
-        } else {
-            greeting = 'Evening';
-        }
-        setTimeout(() => {
-            setMessages([{ sender: "bot", text: `Good ${greeting}! How can I assist you today? Just ask me I'm always happy to help!`, showButtons: true }]);
-            setIsTyping(false);
-        }, 3500);
-    }, []);
-
     const restartChat = () => {
         const currentHour = moment().hour();
 
@@ -133,7 +116,35 @@ export default function ChatBot() {
         }
     }, [conversationStep, formData.message, sendContactForm]);
 
-    const toggleChat = () => setIsOpen(!isOpen);
+    const toggleChat = () => {
+    setIsOpen((prev) => {
+        const newState = !prev;
+
+        if (newState && messages.length === 0) {
+            const currentHour = moment().hour();
+            let greeting = '';
+            if (currentHour >= 0 && currentHour < 12) {
+                greeting = 'Morning';
+            } else if (currentHour >= 12 && currentHour < 15) {
+                greeting = 'Afternoon';
+            } else {
+                greeting = 'Evening';
+            }
+
+            setTimeout(() => {
+                setMessages([{
+                    sender: "bot",
+                    text: `Good ${greeting}! How can I assist you today? Just ask me I'm always happy to help!`,
+                    showButtons: true
+                }]);
+                setIsTyping(false);
+            }, 1500); 
+        }
+
+        return newState;
+    });
+};
+
     const filter = new Filter();
     const positiveWords = [
         "good", "great", "awesome", "excellent", "fantastic", "amazing", "nice",
@@ -420,15 +431,33 @@ export default function ChatBot() {
         };
     }, [chatbotRef]);
 
+    const [showTooltip, setShowTooltip] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowComponent(true);
+            setShowTooltip(true);
+            setTimeout(() => setShowTooltip(false), 6000); 
+        }, 2500);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+
     return (
         <div className="chat-container" ref={chatbotRef}>
 
             {showComponent && (
                 <>
                     <button onClick={toggleChat} className={isOpen ? "chat-close-icon" : "chat-open-icon"}>
-                        <FontAwesomeIcon icon={isOpen ? faTimes : faRobot} size="xl" />
-                    </button>
+                        <FontAwesomeIcon icon={isOpen ? faTimes : faRobot} size="2xl" bounce={!isOpen} className={!isOpen ? "slow-bounce" : ""}/>
 
+                    </button>
+                    {showTooltip && !isOpen && (
+                        <div className="chat-tooltip">
+                            Hi there! 👋 Need help with anything? <br></br>
+                            Just click here to chat!
+                        </div>
+                    )}
                 </>
             )}
             {isOpen && (

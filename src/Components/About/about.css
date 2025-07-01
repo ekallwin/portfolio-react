@@ -120,3 +120,6 @@ figure img {
     outline: none;
     color: white;
 }
+.slow-spin {
+  animation-duration: 1s !important; /* Default is 1s — adjust as needed */
+}

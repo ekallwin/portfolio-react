@@ -5,8 +5,8 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import Navbar from "./navbar";
-import Footer from "./footer";
+import Navbar from "../Navbar/navbar";
+import Footer from "../Footer/footer";
 import './project.css';
 function Projects() {
   useEffect(() => {

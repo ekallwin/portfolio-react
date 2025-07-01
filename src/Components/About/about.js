@@ -1,9 +1,8 @@
-import Allwin from "./Images/Allwin.jpg";
-import Resume from "./Resume/Resume.pdf";
+import Allwin from "../Images/Allwin.jpg";
 import { toast } from "react-toastify";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faHourglassEnd, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faCircleCheck, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import './about.css'
 function About() {
   const [buttonText, setButtonText] = useState(<>Download Resume <FontAwesomeIcon icon={faDownload} /></>);
@@ -13,16 +12,6 @@ function About() {
   const aboutRef = useRef(null);
 
   const handleDownload = () => {
-    if (!Resume) {
-      toast.error('Resume file is not available!', {
-        autoClose: 3000,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-      });
-      return;
-    }
 
     if (hasDownloadedRef.current) {
       toast.warning('You have already initiated to downloaded the resume. Please check in your downloaded files!', {
@@ -45,7 +34,7 @@ function About() {
 
     hasDownloadedRef.current = true;
 
-    setButtonText(<>Download Pending <FontAwesomeIcon icon={faHourglassEnd} /></>);
+    setButtonText(<>Download Pending <FontAwesomeIcon icon={faSpinner} spinPulse className="slow-spin" /></>);
 
     setTimeout(() => {
       toast.success('The resume download has been started !', {
@@ -59,7 +48,7 @@ function About() {
 
     setTimeout(() => {
       const link = document.createElement('a');
-      link.href = Resume;
+      link.href = '/Resume.pdf';
       link.download = 'Resume.pdf';
       link.click();
       setButtonText(<>Download Successful <FontAwesomeIcon icon={faCircleCheck} /></>);
