@@ -2,7 +2,7 @@ import Allwin from "../Images/Allwin.jpg";
 import { toast } from "react-toastify";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faCircleCheck, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faCircleCheck, faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
 import './about.css'
 function About() {
   const [buttonText, setButtonText] = useState(<>Download Resume <FontAwesomeIcon icon={faDownload} /></>);
@@ -34,7 +34,7 @@ function About() {
 
     hasDownloadedRef.current = true;
 
-    setButtonText(<>Download Pending <FontAwesomeIcon icon={faSpinner} spinPulse className="slow-spin" /></>);
+    setButtonText(<>Download Pending <FontAwesomeIcon icon={faHourglassEnd} /></>);
 
     setTimeout(() => {
       toast.success('The resume download has been started !', {
