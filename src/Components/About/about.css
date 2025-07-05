@@ -119,5 +119,6 @@ figure img {
 .gradient-button-down:focus {
     outline: none;
     color: white;
+    background-color: #4000F9;
 }
 
