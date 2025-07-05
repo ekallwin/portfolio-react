@@ -20,6 +20,7 @@
     "country-list": "^2.3.0",
     "date-fns": "^3.6.0",
     "dictionary-en": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "franc-min": "^6.2.0",
     "i18n-iso-countries": "^7.14.0",
     "moment": "^2.30.1",
