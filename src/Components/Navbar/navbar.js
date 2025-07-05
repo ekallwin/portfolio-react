@@ -1,66 +1,77 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import './navbar.css';
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const navbarRef = useRef(null);
+  const navbarRef = useRef();
 
-  const toggleMenu = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
   };
 
-  const closeMenu = () => {
+  const closeNavbar = () => {
     setIsOpen(false);
+    const toggler = document.querySelector('.navbar-toggler');
+    const collapse = document.getElementById('navbarNav');
+    if (collapse?.classList.contains('show')) {
+      toggler?.click();
+    }
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-        closeMenu();
+        closeNavbar();
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [navbarRef]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
-    <>
-      <nav className="navbar" ref={navbarRef}>
-        <div className="navbar-logo" >
-          <h1>Allwin's Portfolio</h1>
+    <nav className="navbar navbar-expand-lg fixed-top glass-navbar px-3" ref={navbarRef}>
+      <div className="container-fluid">
+        <Link className="navbar-brand text-white fw-bold text-uppercase me-auto" to="/">
+          ALLWIN'S PORTFOLIO
+        </Link>
+
+        <button
+          className="navbar-toggler border-0 text-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          onClick={toggleNavbar}
+        >
+          <FontAwesomeIcon icon={isOpen ? faXmark : faBars} size="xl" />
+        </button>
+
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+          <ul className="navbar-nav ms-auto gap-lg-4 text-start text-lg-center">
+            <li className="nav-item">
+              <HashLink to="/#Home" className="nav-link navbar-link" smooth onClick={closeNavbar}>Home</HashLink>
+            </li>
+            <li className="nav-item">
+              <HashLink to="/#About" className="nav-link navbar-link" smooth onClick={closeNavbar}>About</HashLink>
+            </li>
+            <li className="nav-item">
+              <Link to="/projects" className="nav-link navbar-link" onClick={closeNavbar}>Projects</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/achievements" className="nav-link navbar-link" onClick={closeNavbar}>Achievements</Link>
+            </li>
+            <li className="nav-item">
+              <HashLink to="/#Contact" className="nav-link navbar-link" smooth onClick={closeNavbar}>Contact me</HashLink>
+            </li>
+          </ul>
         </div>
-        <div className="menu-icon" onClick={toggleMenu}>
-          {isOpen ? (
-            <FontAwesomeIcon icon={faX} className="menu-icon-close" size="2xl" />
-          ) : (
-            <FontAwesomeIcon icon={faBars} className="menu-icon-bars" size="2xl" />
-          )}
-        </div>
-        <ul className={`navbar-links ${isOpen ? "open" : ""}`}>
-          <li>
-            <HashLink to="/#Home" className="navbar-link" smooth onClick={closeMenu}>Home</HashLink>
-          </li>
-          <li>
-            <HashLink to="/#About" className="navbar-link" smooth onClick={closeMenu}>About</HashLink>
-          </li>
-          <li>
-            <Link to="/projects" className="navbar-link" onClick={closeMenu}>Projects</Link>
-          </li>
-          <li>
-            <Link to="/achievements" className="navbar-link" onClick={closeMenu}>Achievements</Link>
-          </li>
-          <li>
-            <HashLink to="/#Contact" className="navbar-link" smooth onClick={closeMenu}>Contact me</HashLink>
-          </li>
-        </ul>
-      </nav>
-    </>
-  )
+      </div>
+    </nav>
+  );
 }
+
 export default Navbar;

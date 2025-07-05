@@ -5,11 +5,12 @@ import Amrita from './Carousel/Amrita College Symposium.jpg';
 import AVCE from './Carousel/AVCE College Symposium.jpg';
 import SXCCE from './Carousel/St Xavier Symposium.jpg';
 import Loyola from './Carousel/Loyola.jpg';
-import Amrita2025 from './Carousel/Amrita2025.jpg'
+import Amrita2025 from './Carousel/Amrita2025.jpg';
+
 import Navbar from '../Navbar/navbar';
 import Footer from '../Footer/footer';
 
-const Carousel = () => {
+const Achievements = () => {
   const slides = [
     {
       image: DMI,
@@ -48,7 +49,7 @@ const Carousel = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === slides.length - 1 ? 0 : prevIndex + 1
       );
-    }, 7000);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [isPaused, slides.length]);
@@ -77,9 +78,10 @@ const Carousel = () => {
     <>
       <Navbar />
       <h2 style={{ textAlign: 'center' }} id="achievments">Achievements</h2>
-      <div className="carousel">
+
+      <div className="custom-carousel">
         <button
-          className="prev"
+          className="custom-prev"
           onClick={(e) => {
             e.stopPropagation();
             handlePrev();
@@ -89,13 +91,13 @@ const Carousel = () => {
         </button>
 
         <div
-          className="carousel-slide"
+          className="custom-carousel-slide"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
         >
           {slides.map((slide, index) => (
-            <div key={index} className="carousel-item">
+            <div key={index} className="custom-carousel-item">
               <img
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
@@ -107,7 +109,7 @@ const Carousel = () => {
         </div>
 
         <button
-          className="next"
+          className="custom-next"
           onClick={(e) => {
             e.stopPropagation();
             handleNext();
@@ -117,17 +119,17 @@ const Carousel = () => {
         </button>
       </div>
 
-      <div className="carousel-dots">
+      <div className="custom-carousel-dots">
         {slides.map((_, index) => (
           <span
             key={index}
-            className={`dot ${index === currentIndex ? "active" : ""}`}
+            className={`custom-dot ${index === currentIndex ? "active" : ""}`}
             onClick={() => handleDotClick(index)}
           ></span>
         ))}
       </div>
 
-      <div className="carousel-caption">
+      <div className="custom-carousel-caption">
         <p>{slides[currentIndex].caption}</p>
       </div>
 
@@ -136,4 +138,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default Achievements;
