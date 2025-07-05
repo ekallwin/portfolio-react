@@ -5,7 +5,7 @@
 .custom-carousel {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   height: 300px;
   margin: 0 auto;
   overflow: hidden;
@@ -36,7 +36,7 @@
   width: fit-content;
   position: relative;
   left: 50%;
-  margin-top: 40px;
+  margin-top: 5%;
   transform: translate(-50%, -50%);
   color: white;
   font-family: serif;
@@ -80,7 +80,7 @@ button:hover {
   }
 
   .custom-carousel-caption {
-    margin-top: 60px;
+    margin-top: 25%;
     font-size: 24px;
   }
 
@@ -92,6 +92,7 @@ button:hover {
 
 .custom-carousel-dots {
   text-align: center;
+  margin: 2% 0 5% 0;
 }
 
 .custom-dot {

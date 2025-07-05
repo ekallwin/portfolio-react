@@ -39,20 +39,18 @@ const Achievements = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === slides.length - 1 ? 0 : prevIndex + 1
       );
-    }, 6000);
+    }, 5000);
 
     return () => clearInterval(timer);
-  }, [isPaused, slides.length]);
+  }, [slides.length]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -68,10 +66,6 @@ const Achievements = () => {
 
   const handleDotClick = (index) => {
     setCurrentIndex(index);
-  };
-
-  const togglePause = () => {
-    setIsPaused((prev) => !prev);
   };
 
   return (
@@ -101,7 +95,6 @@ const Achievements = () => {
               <img
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
-                onClick={togglePause}
                 style={{ cursor: "pointer" }}
               />
             </div>

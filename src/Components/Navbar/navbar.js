@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,7 @@ import './navbar.css';
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef();
+  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -31,6 +32,24 @@ function Navbar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+  const handleLinkClick = (e, to = null, isHash = false) => {
+    const link = e.currentTarget;
+    link.classList.add('active');
+
+    if (!isHash) {
+      e.preventDefault();
+    }
+
+    setTimeout(() => {
+      link.classList.remove('active');
+      closeNavbar();
+
+      if (to && !isHash) {
+        navigate(to);
+      }
+    }, 800);
+  };
+
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top glass-navbar px-3" ref={navbarRef}>
@@ -53,19 +72,19 @@ function Navbar() {
 
           <ul className="navbar-nav ms-auto gap-lg-4 text-start text-lg-center">
             <li className="nav-item">
-              <HashLink to="/#Home" className="nav-link navbar-link" smooth onClick={closeNavbar}>Home</HashLink>
+              <HashLink to="/#Home" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}>Home</HashLink>
             </li>
             <li className="nav-item">
-              <HashLink to="/#About" className="nav-link navbar-link" smooth onClick={closeNavbar}>About</HashLink>
+              <HashLink to="/#About" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}>About</HashLink>
             </li>
             <li className="nav-item">
-              <Link to="/projects" className="nav-link navbar-link" onClick={closeNavbar}>Projects</Link>
+              <Link to="/projects" className="nav-link navbar-link" onClick={(e) => handleLinkClick(e, "/projects")}>Projects</Link>
             </li>
             <li className="nav-item">
-              <Link to="/achievements" className="nav-link navbar-link" onClick={closeNavbar}>Achievements</Link>
+              <Link to="/achievements" className="nav-link navbar-link" onClick={(e) => handleLinkClick(e, "/achievements")}>Achievements</Link>
             </li>
             <li className="nav-item">
-              <HashLink to="/#Contact" className="nav-link navbar-link" smooth onClick={closeNavbar}>Contact me</HashLink>
+              <HashLink to="/#Contact" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}>Contact me</HashLink>
             </li>
           </ul>
         </div>

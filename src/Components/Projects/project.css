@@ -43,10 +43,6 @@
     margin-top: 10px;
 }
 
-.pro-icon:hover {
-    color: #646363;
-}
-
 .Projects {
     margin-top: 120px;
     margin-bottom: 120px;
@@ -58,6 +54,14 @@ a {
 
 .Project-info {
     margin-left: 20px;
+}
+
+.Project-links a * {
+    color: black;
+}
+
+.Project-links a *:hover {
+    color: #646363;
 }
 
 @media (max-width: 768px) {
