@@ -194,4 +194,7 @@
   transition: height 0.7s ease;
 }
 
-
+.navbar-brand{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px !important;
+}

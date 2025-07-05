@@ -1,5 +1,5 @@
 .contact {
-  max-width: 80%;
+  width: 90%;
   justify-content: center;
   margin: 0 auto;
   color: white;
@@ -91,7 +91,7 @@ textarea {
 }
 
 .submit {
-  width: 40%;
+  width: 55%;
   position: relative;
   color: white;
   margin: 0 auto;
@@ -181,7 +181,7 @@ textarea {
 
 @media (max-width: 600px) {
   form {
-    padding: 35px;
+    padding: 30px;
   }
 
   h2 {
@@ -189,7 +189,7 @@ textarea {
   }
 
   .contact {
-    width: 85%;
+    width: 95%;
     margin: auto;
     padding: 25px;
   }
