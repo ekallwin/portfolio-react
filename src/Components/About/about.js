@@ -92,7 +92,7 @@ function About() {
               <br /><br />
               &emsp;I strongly believe in continuous learning and improving myself, so I try my best to learn in any situation possible, unfavorable or not.
             </figcaption>
-            <button className="gradient-button-down" id="down_btn" style={{ fontSize: '20px' }} onClick={handleDownload}>{buttonText}</button>
+            <button className="glass-button-down" id="down_btn" style={{ fontSize: '20px' }} onClick={handleDownload}>{buttonText}</button>
           </figure>
         </div>
       </div>

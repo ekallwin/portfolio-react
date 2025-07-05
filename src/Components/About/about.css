@@ -96,7 +96,7 @@ figure img {
     }
 }
 
-.gradient-button-down {
+.glass-button-down {
     position: relative;
     color: white;
     margin: 30px auto;
@@ -113,11 +113,11 @@ figure img {
     transition: color 0.3s ease;
 }
 
-.gradient-button-down:hover {
+.glass-button-down:hover {
     background-color: #5933FA;
 }
 
-.gradient-button-down:focus {
+.glass-button-down:focus {
     outline: none;
     color: white;
     background-color: #4000F9;

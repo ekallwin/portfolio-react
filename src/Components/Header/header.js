@@ -73,7 +73,7 @@ function Header() {
           />
           </h2>
         </div>
-        <button className="gradient-button btn-fade" onClick={LinkedIn} ref={buttonRef}>Let's connect</button>
+        <button className="glass-button btn-fade" onClick={LinkedIn} ref={buttonRef}>Let's connect</button>
       </div>
     </>
   )

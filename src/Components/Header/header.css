@@ -30,7 +30,7 @@
     color: white;
 }
 
-.gradient-button {
+.glass-button {
     position: relative;
     color: rgba(255, 255, 255);
     margin: 30px auto;
@@ -52,7 +52,7 @@
     transform-origin: center;
 }
 
-.gradient-button:hover {
+.glass-button:hover {
     color: white;
     transform: scale(1.15);
     cursor: pointer;
@@ -63,7 +63,7 @@
         inset 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
-.gradient-button::after {
+.glass-button::after {
     content: '';
     position: absolute;
     top: 0;
@@ -81,7 +81,7 @@
     transition: opacity 0.3s ease;
 }
 
-.gradient-button:focus {
+.glass-button:focus {
     outline: none;
     color: white;
 }

@@ -449,8 +449,7 @@ export default function ChatBot() {
             {showComponent && (
                 <>
                     <button onClick={toggleChat} className={isOpen ? "chat-close-icon" : "chat-open-icon"}>
-                        <FontAwesomeIcon icon={isOpen ? faTimes : faRobot} size="2xl" bounce={!isOpen} className={!isOpen ? "slow-bounce" : ""} />
-
+                        <FontAwesomeIcon icon={isOpen ? faTimes : faRobot} size="xl" bounce={!isOpen} className={!isOpen ? "slow-bounce" : ""} />
                     </button>
                     {showTooltip && !isOpen && (
                         <div className="chat-tooltip">
