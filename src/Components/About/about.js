@@ -14,7 +14,7 @@ function About() {
   const handleDownload = () => {
 
     if (hasDownloadedRef.current) {
-      toast.warning('You have already initiated to downloaded the resume. Please check in your downloaded files!', {
+      toast.warning('You’ve already initiated the resume download. Please check your Downloads folder!', {
         autoClose: 6000,
         closeOnClick: false,
         pauseOnHover: false,
