@@ -125,7 +125,7 @@ export default function ChatBot() {
                 let greeting = '';
                 if (currentHour >= 0 && currentHour < 12) {
                     greeting = 'Morning';
-                } else if (currentHour >= 12 && currentHour < 15) {
+                } else if (currentHour >= 12 && currentHour < 16) {
                     greeting = 'Afternoon';
                 } else {
                     greeting = 'Evening';

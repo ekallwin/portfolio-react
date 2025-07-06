@@ -48,7 +48,7 @@ function Header() {
   let greeting = '';
   if (currentHour >= 0 && currentHour < 12) {
     greeting = 'Morning';
-  } else if (currentHour >= 12 && currentHour < 15) {
+  } else if (currentHour >= 12 && currentHour < 16) {
     greeting = 'Afternoon';
   } else {
     greeting = 'Evening';
@@ -61,7 +61,6 @@ function Header() {
         <h2 className="titlename" >Good {greeting}!</h2>
         <h2 className="titlename" >I'm Allwin E K</h2>
         <div className="typing-effect" style={{ display: 'flex', flexDirection: 'column', color: 'white' }}>
-          {/* <h2 className="typewritter" style={{ marginLeft: '25px' }}>I'm</h2> */}
           <h2 className="typewritter"><Typewriter
             options={{
               strings: ["MERN stack Developer", "Designer", "Freelancer"],
