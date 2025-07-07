@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import Navbar from "../Navbar/navbar";
 import Footer from "../Footer/footer";
 import './project.css';
-import ChatBot from "../ChatBot/ChatBot";
 function Projects() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -85,7 +84,6 @@ function Projects() {
         </div>
 
       </div>
-      <ChatBot />
       <Footer />
     </>
   )
