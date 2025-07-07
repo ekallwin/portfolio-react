@@ -156,7 +156,9 @@ export default function ChatBot() {
         "fun", "friendly", "motivating", "uplifting", "encouraging", "energetic",
         "lively", "strong", "smart", "intelligent", "talented", "lovely",
         "passionate", "respectful", "honest", "loyal", "inspiring", "warm-hearted",
-        "blessed", "fortunate", "appreciated", "celebrated", "victorious", "ok", "kk", "done"
+        "blessed", "fortunate", "appreciated", "celebrated", "victorious", "ok", "kk", "done", "well done",
+        "good work", "good job", "good effort", "good luck", "good wishes", "good vibes",
+        "nice portfolio", "good portfolio", "good website", "good blog", "good content", "awesome", "awsome"
     ];
 
     const negativeWords = [
@@ -171,7 +173,7 @@ export default function ChatBot() {
         "offensive", "pathetic", "repulsive", "scornful", "troublesome",
         "vile", "wicked", "wretched", "nasty", "heartbreaking", "despair",
         "incompetent", "regretful", "unhappy", "undesirable", "unfair",
-        "unforgivable", "unpleasant", "unworthy", "worthless", "nothing", "devastating"
+        "unforgivable", "unpleasant", "unworthy", "worthless", "nothing", "devastating", "no thanks"
     ];
 
     const socialMediaWords = [
@@ -326,7 +328,7 @@ export default function ChatBot() {
             if (
                 !lowerCaseEmail.includes("@") ||
                 !lowerCaseEmail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) ||
-                !lowerCaseEmail.match(/\.(com|in|org|edu\.in|net|co\.in)$/)
+                !lowerCaseEmail.match(/\.(com|net|org|info|biz|co|me|site|online|website|store|space|io|app|dev|tech|ai|so|cloud|systems|digital|solutions|company|enterprises|agency|firm|group|international|consulting|edu|edu\.in|ac\.in|university|school|college|institute|in|co\.in|gov\.in|mil\.in|uk|us|ca|au|nz|ph|sg|id|de|fr|it|jp|tv|fm|radio|press|news|media)$/)
             ) {
                 return "Invalid email address. Please enter a valid email (e.g., example@domain.com)";
             }
@@ -360,6 +362,23 @@ export default function ChatBot() {
             }));
             setConversationStep(5);
             return "Sending your message... Please don't close this chat";
+        }
+        if (conversationStep === 5) {
+            setConversationStep(0);
+            if (greetings.some(word => lowerCaseQuery.includes(word))) {
+                return "Hello again! How can I assist you further?";
+            }
+            if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
+                return "You're welcome! Let me know if you need anything else.";
+            }
+            if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
+                return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
+            }
+
+            return {
+                text: "I'm still here if you have more questions",
+                showButtons: true
+            };
         }
 
         return "I'm not sure, but I'm learning!";

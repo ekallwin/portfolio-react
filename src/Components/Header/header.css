@@ -4,8 +4,12 @@
     color: white;
     text-align: left;
     margin: 50px 0 10px 20px;
-    font-size: 45px;
+    font-size: 45px !important;
     user-select: none;
+}
+
+.header-text {
+    margin-top: -0.2% !important;
 }
 
 .item-name h2 {

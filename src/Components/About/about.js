@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faCircleCheck, faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
-import './about.css'
+import './about.css';
 function About() {
   const [buttonText, setButtonText] = useState(<>Download Resume <FontAwesomeIcon icon={faDownload} /></>);
 

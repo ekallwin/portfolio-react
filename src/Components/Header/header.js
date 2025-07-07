@@ -1,6 +1,7 @@
 import Typewriter from "typewriter-effect";
 import { toast } from "react-toastify";
 import { useEffect, useRef } from "react";
+import SplitText from '../SplitText/SplitText';
 import './header.css';
 import moment from 'moment';
 function Header() {
@@ -58,8 +59,34 @@ function Header() {
     <>
       <h1 id="Home">Allwin E K</h1>
       <div className="item-name" >
-        <h2 className="titlename" >Good {greeting}!</h2>
-        <h2 className="titlename" >I'm Allwin E K</h2>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <SplitText
+            text={`Good ${greeting}!`}
+            className="titlename font-semibold h2"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="left"
+          />
+          <SplitText
+            text="I'm Allwin E K"
+            className="titlename font-semibold header-text"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="left"
+          />
+        </div>
         <div className="typing-effect" style={{ display: 'flex', flexDirection: 'column', color: 'white' }}>
           <h2 className="typewritter"><Typewriter
             options={{

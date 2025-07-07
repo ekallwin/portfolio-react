@@ -9,7 +9,7 @@ import Amrita2025 from './Carousel/Amrita2025.jpg';
 
 import Navbar from '../Navbar/navbar';
 import Footer from '../Footer/footer';
-
+import ChatBot from "../ChatBot/ChatBot";
 const Achievements = () => {
   const slides = [
     {
@@ -125,7 +125,7 @@ const Achievements = () => {
       <div className="custom-carousel-caption">
         <p>{slides[currentIndex].caption}</p>
       </div>
-
+      <ChatBot />
       <Footer />
     </>
   );

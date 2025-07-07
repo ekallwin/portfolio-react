@@ -22,9 +22,13 @@ footer h4 {
     margin: 25px 0 25px 0;
 }
 
+.footer-copyright a {
+    text-decoration: underline !important;
+    color: white;
+}
+
 a {
     text-decoration: none !important;
-    color: blue !important;
 }
 
 footer h4 {

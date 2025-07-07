@@ -115,7 +115,7 @@ const ContactForm = () => {
     } else if (
       !formData.email.includes("@") ||
       !formData.email.match(/^[a-zA-Z0-9.-_]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})?$/) ||
-      !formData.email.match(/\.(com|in|org|edu\.in|net|co\.in)$/)
+      !formData.email.match(/\.(com|net|org|info|biz|co|me|site|online|website|store|space|io|app|dev|tech|ai|so|cloud|systems|digital|solutions|company|enterprises|agency|firm|group|international|consulting|edu|edu\.in|ac\.in|university|school|college|institute|in|co\.in|gov\.in|mil\.in|uk|us|ca|au|nz|ph|sg|id|de|fr|it|jp|tv|fm|radio|press|news|media)$/)
     ) {
       NotificationManager.error("Invalid email address", null, 4000);
       isValid = false;
