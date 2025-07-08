@@ -72,19 +72,19 @@ function Navbar() {
 
           <ul className="navbar-nav ms-auto gap-lg-4 text-start text-lg-center">
             <li className="nav-item">
-              <HashLink to="/#Home" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}>Home</HashLink>
+              <HashLink to="/#Home" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}><span>Home</span></HashLink>
             </li>
             <li className="nav-item">
-              <HashLink to="/#About" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}>About</HashLink>
+              <HashLink to="/#About" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}><span>About</span></HashLink>
             </li>
             <li className="nav-item">
-              <Link to="/projects" className="nav-link navbar-link" onClick={(e) => handleLinkClick(e, "/projects")}>Projects</Link>
+              <Link to="/projects" className="nav-link navbar-link" onClick={(e) => handleLinkClick(e, "/projects")}><span>Projects</span></Link>
             </li>
             <li className="nav-item">
-              <Link to="/achievements" className="nav-link navbar-link" onClick={(e) => handleLinkClick(e, "/achievements")}>Achievements</Link>
+              <Link to="/achievements" className="nav-link navbar-link" onClick={(e) => handleLinkClick(e, "/achievements")}><span>Achievements</span></Link>
             </li>
             <li className="nav-item">
-              <HashLink to="/#Contact" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}>Contact me</HashLink>
+              <HashLink to="/#Contact" className="nav-link navbar-link" smooth onClick={(e) => handleLinkClick(e, null, true)}><span>Contact me</span></HashLink>
             </li>
           </ul>
         </div>

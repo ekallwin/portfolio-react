@@ -156,7 +156,7 @@ export default function ChatBot() {
         "fun", "friendly", "motivating", "uplifting", "encouraging", "energetic",
         "lively", "strong", "smart", "intelligent", "talented", "lovely",
         "passionate", "respectful", "honest", "loyal", "inspiring", "warm-hearted",
-        "blessed", "fortunate", "appreciated", "celebrated", "victorious", "ok", "kk", "done", "well done",
+        "blessed", "fortunate", "appreciated", "celebrated", "victorious", "kk", "done", "well done",
         "good work", "good job", "good effort", "good luck", "good wishes", "good vibes",
         "nice portfolio", "good portfolio", "good website", "good blog", "good content", "awesome", "awsome"
     ];
@@ -204,6 +204,18 @@ export default function ChatBot() {
     const educationKeywords = [
         "education", "learn", "study", "university", "college"
     ]
+    const endConversationKeywords = [
+        "no", "nope", "nah", "nothing", "not now", "i'm done", "done", "stop", "quit",
+        "from now", "that's all", "that's enough", "no thanks", "no thank you",
+        "maybe later", "leave me", "not interested", "i'm good", "i'm okay",
+        "enough", "i have no more questions", "no more questions", "end", "that's it"
+    ];
+    const yesWords = [
+        "yes", "yeah", "yep", "sure", "absolutely", "of course", "definitely",
+        "indeed", "ok", "okay", "yup", "please do", "go ahead", "certainly",
+        "affirmative", "sounds good", "fine", "alright", "gladly", "i do", "i would"
+    ];
+
     const getBotResponse = (query) => {
 
         const lowerCaseQuery = query.toLowerCase();
@@ -241,11 +253,18 @@ export default function ChatBot() {
             if (greetings.some(word => lowerCaseQuery.includes(word))) {
                 return "Hello! How can I assist you today? Just ask me, I'm always happy to help!";
             }
+            if (yesWords.some(word => lowerCaseQuery.includes(word))) {
+                return "Great! Let me know how I can assist you further.";
+            }
+
             if (positiveWords.some(word => lowerCaseQuery.includes(word))) {
                 return "Glad to hear that! It was nice talking to you. If you have any questions, feel free to ask!";
             }
             if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
                 return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
+            }
+            if (endConversationKeywords.some(word => lowerCaseQuery.includes(word))) {
+                return "No problem, If you have any other issues, feel free to ask me!";
             }
 
             if (contactWords.some(word => lowerCaseQuery.includes(word))) {
@@ -374,7 +393,12 @@ export default function ChatBot() {
             if (negativeWords.some(word => lowerCaseQuery.includes(word))) {
                 return "Sorry to hear that! I'm constantly improving myself and I'm still learning. If you have any questions, feel free to ask!";
             }
-
+            if (endConversationKeywords.some(word => lowerCaseQuery.includes(word))) {
+                return "No problem, If you have any other issues, feel free to ask me!";
+            }
+            if (yesWords.some(word => lowerCaseQuery.includes(word))) {
+                return "Great! Let me know how I can assist you further.";
+            }
             return {
                 text: "I'm still here if you have more questions",
                 showButtons: true
@@ -456,7 +480,7 @@ export default function ChatBot() {
             setShowComponent(true);
             setShowTooltip(true);
             setTimeout(() => setShowTooltip(false), 5000);
-        }, 2500);
+        }, 1500);
 
         return () => clearTimeout(timer);
     }, []);

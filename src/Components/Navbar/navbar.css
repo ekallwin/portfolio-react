@@ -68,7 +68,7 @@
 
     li.nav-item {
         display: flex;
-        justify-content: start;
+        justify-content: center;
     }
 }
 
@@ -89,7 +89,7 @@
         top: 60px;
         right: 0;
         background-color: #181818;
-        width: 90%;
+        width: 100%;
         padding: 1rem 0;
         transform: translateY(-100%);
         transition: all 0.3s ease;
@@ -123,12 +123,11 @@
         font-size: 1.5rem;
         font-weight: 500;
         transition: color 0.3s ease;
-        margin: 0 30px 0 -15px;
         font-family: serif;
-        padding: 8px 15px;
         overflow: hidden;
         border-radius: 25px;
         z-index: 1;
+        padding: 5px 15px !important;
     }
 
     .navbar-link span {

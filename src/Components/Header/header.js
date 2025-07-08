@@ -64,7 +64,7 @@ function Header() {
             text={`Good ${greeting}!`}
             className="titlename font-semibold h2"
             delay={100}
-            duration={0.9}
+            duration={1}
             ease="power3.out"
             splitType="chars"
             from={{ opacity: 0, y: 40 }}
@@ -77,7 +77,7 @@ function Header() {
             text="I'm Allwin E K"
             className="titlename font-semibold header-text"
             delay={100}
-            duration={0.9}
+            duration={1}
             ease="power3.out"
             splitType="chars"
             from={{ opacity: 0, y: 40 }}
