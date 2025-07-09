@@ -254,7 +254,7 @@ const ContactForm = () => {
       <h2>Contact me</h2>
       <form onSubmit={handleSubmit} className="fade-in-contact" ref={contactRef} autoComplete="off">
         <div className="input-container">
-          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} autoComplete="off"/>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="" pattern="[A-Za-z\s]*" onInput={(e) => { e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, ""); }} style={{ width: "100%" }} autoComplete="off" />
           <label>Name</label>
         </div>
 
@@ -276,15 +276,13 @@ const ContactForm = () => {
           <label>Email Address</label>
         </div>
         <div className="input-container">
-          <textarea type="text" name="message" value={formData.message} maxLength={501} onChange={handleChange} placeholder=" " style={{ width: "100%" }} autoComplete="off" />
+          <textarea type="text" name="message" value={formData.message} maxLength={501} onChange={handleChange} placeholder=" " style={{ width: "100%", resize: 'none' }} autoComplete="off" />
           <label>Your Message</label>
           <div className={formData.message.length > 490 ? "char-count-max" : "char-count"}>
             {formData.message.length > 490
               ? `${Math.max(0, 500 - formData.message.length)} characters left`
               : `${formData.message.length}/500`}
           </div>
-
-
 
         </div>
         <button type="submit" className="submit" style={{ marginTop: "10px" }}>Send <FontAwesomeIcon icon={faPaperPlane} /></button>
