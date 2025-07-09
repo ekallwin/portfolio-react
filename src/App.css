@@ -92,7 +92,7 @@ span {
   transform: translateX(40px);
 }
 
-.btn-fade {
+/* .btn-fade {
   opacity: 0;
   transform: translateX(40px);
   transition: opacity 2s ease-in, transform 2s ease-in;
@@ -100,7 +100,7 @@ span {
 
 .btn-fade.show {
   opacity: 1;
-}
+} */
 
 .show {
   opacity: 1;
